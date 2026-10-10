@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>魅力ある地方の紹介 - 家族とともに造るライフスタイル支援 mirai cycle</title>
+<meta name="description" content="恵那市、中津川市、静岡市、多古町、三好市、神山町。魅力ある「トカイナカ」を5つの視点でご紹介します。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700;900&display=swap">
+<style>
+/* Layout: 写真がゆっくり動いて切り替わるヒーロー → 章ごとに色を持たせた紙面(空色・陽だまり・若葉)と写真 → 循環の章だけ深緑の面で受ける */
+:root{
+  --bg:#F5F8F2; --surface:#FFFFFF; --ink:#12261C; --ink-soft:#45574C; --line:#D3DCCE;
+  --pine:#0F3B2C; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2C5A47;
+  --sprout:#C6E24A; --on-sprout:#12260A; --marker:#FFE566; --on-c:#FFFFFF;
+  --leaf:#2A7A2E; --sky:#1870AB; --sun:#9A6800; --persimmon:#C24814; --plum:#B93A6C;
+  --leaf-soft:#E1F2DA; --sky-soft:#DFF0FA; --sun-soft:#FFF2C9; --persimmon-soft:#FDE5D8; --plum-soft:#FADEE9;
+  --btn-bg:#0F3B2C; --btn-fg:#F1F7EA;
+  /* 絵の上・深緑の面の上で使う固定色 */
+  --scrim-1:rgba(5,38,28,.9); --scrim-2:rgba(5,38,28,.55); --hero-n:#D4F06A; --hero-u:#9BDCFF;
+  --photo-mat:#FFFFFF; --p1:#C6E24A; --p2:#FFD34D; --p3:#FF9A62; --p4:#F58BB5; --p5:#7CCBF2;
+  --f-display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+  --f-latin:"Bricolage Grotesque","Zen Kaku Gothic New",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1812; --surface:#13251C; --ink:#E8F0E3; --ink-soft:#A9BBAD; --line:#27402F;
+    --pine:#15382A; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2F5C49;
+    --sprout:#C6E24A; --on-sprout:#12260A; --marker:#6A5600; --on-c:#0B1812;
+    --leaf:#9AD36A; --sky:#74C4F2; --sun:#F5C544; --persimmon:#FF9A6B; --plum:#F291B8;
+    --leaf-soft:#12301C; --sky-soft:#0F2A39; --sun-soft:#2E2708; --persimmon-soft:#371D12; --plum-soft:#351926;
+    --btn-bg:#C6E24A; --btn-fg:#12260A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1812; --surface:#13251C; --ink:#E8F0E3; --ink-soft:#A9BBAD; --line:#27402F;
+  --pine:#15382A; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2F5C49;
+  --sprout:#C6E24A; --on-sprout:#12260A; --marker:#6A5600; --on-c:#0B1812;
+  --leaf:#9AD36A; --sky:#74C4F2; --sun:#F5C544; --persimmon:#FF9A6B; --plum:#F291B8;
+  --leaf-soft:#12301C; --sky-soft:#0F2A39; --sun-soft:#2E2708; --persimmon-soft:#371D12; --plum-soft:#351926;
+  --btn-bg:#C6E24A; --btn-fg:#12260A; color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol,figure,table{margin:0}
+ul,ol{padding:0;list-style:none}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.45;text-wrap:balance;word-break:auto-phrase;font-feature-settings:"palt"}
+a{color:var(--sky);text-underline-offset:.25em}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--sprout);outline-offset:3px;border-radius:4px}
+::selection{background:var(--sprout);color:var(--on-sprout)}
+strong{font-weight:700}
+mark{background:linear-gradient(transparent 56%,var(--marker) 56%);color:inherit;font-weight:700;padding-inline:.1em}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.sec{padding-block:clamp(56px,9vw,112px);--c:var(--leaf);--c-soft:var(--leaf-soft)}
+.prose{max-width:39em;display:flex;flex-direction:column;gap:1.1em}
+.nb{display:inline-block;max-width:100%}
+.c-leaf{--c:var(--leaf);--c-soft:var(--leaf-soft)}
+.c-sky{--c:var(--sky);--c-soft:var(--sky-soft)}
+.c-sun{--c:var(--sun);--c-soft:var(--sun-soft)}
+.c-persimmon{--c:var(--persimmon);--c-soft:var(--persimmon-soft)}
+.c-plum{--c:var(--plum);--c-soft:var(--plum-soft)}
+.tint{background:var(--c-soft)}
+
+/* 写真 */
+.photo{display:block;width:100%;height:auto;border-radius:12px;background:var(--leaf-soft)}
+
+/* ヘッダー */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;min-width:0}
+.brand svg{flex:none;width:34px;height:34px}
+.brand-name{font-family:var(--f-latin);font-weight:700;font-size:1.2rem;line-height:1.1;letter-spacing:.01em;white-space:nowrap}
+.brand-tag{display:block;font-family:var(--f-body);font-weight:500;font-size:.66rem;letter-spacing:.08em;color:var(--ink-soft);margin-top:3px}
+.nav{display:flex;gap:clamp(12px,2.4vw,28px);align-items:center;font-size:.86rem;font-weight:700;white-space:nowrap}
+.nav a{color:var(--ink);text-decoration:none;padding-block:6px;border-bottom:2px solid transparent;transition:border-color .2s}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--leaf)}
+@media (max-width:520px){.brand-tag{display:none}.brand svg{width:28px;height:28px}.brand-name{font-size:1.05rem}}
+
+/* ボタン */
+.btn{display:inline-flex;align-items:center;gap:.6em;font-weight:700;font-size:.95rem;line-height:1.4;text-decoration:none;padding:.85em 1.5em;border-radius:999px;background:var(--btn-bg);color:var(--btn-fg);border:1.5px solid var(--btn-bg);transition:transform .2s,background .2s,color .2s}
+.btn::after{content:"→";font-family:var(--f-latin);transition:transform .2s}
+.btn:hover::after{transform:translateX(4px)}
+.btn--line{background:var(--surface);color:var(--ink);border-color:var(--ink)}
+.btn--sprout{background:var(--sprout);color:var(--on-sprout);border-color:var(--sprout)}
+.btn--ghost{background:rgba(5,38,28,.45);color:var(--on-pine);border-color:var(--on-pine)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.more{font-weight:700}
+.more::after{content:" →";font-family:var(--f-latin)}
+
+/* ヒーロー(スライド) */
+.hero{position:relative;isolation:isolate;background:var(--pine);color:var(--on-pine);overflow:hidden}
+.slides{position:absolute;inset:0;overflow:hidden}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;animation:kb1 24s ease-in-out infinite alternate;will-change:transform,opacity}
+.slide:nth-child(2){animation-name:kb2}
+.slide:nth-child(3){animation-name:kb3}
+.slide:nth-child(4){animation-name:kb1;animation-direction:alternate-reverse}
+.hero-gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .9s ease}
+.slides.gl .hero-gl{opacity:1}
+.slides.gl .slide{animation:none}
+.hero.is-paused .slide{animation-play-state:paused}
+.slide.is-on{opacity:1}
+@keyframes kb1{from{transform:scale(1.04)}to{transform:scale(1.17) translate(-2%,-1.5%)}}
+@keyframes kb2{from{transform:scale(1.17) translate(2%,0)}to{transform:scale(1.04) translate(0,1%)}}
+@keyframes kb3{from{transform:scale(1.05) translate(-1%,1%)}to{transform:scale(1.16) translate(1.5%,-1%)}}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,var(--scrim-1) 0%,var(--scrim-2) 36%,transparent 68%)}
+.hero .wrap{position:relative;z-index:1;display:flex;align-items:flex-end;min-height:clamp(500px,58vw,720px);padding-block:clamp(56px,8vw,96px) clamp(36px,4.5vw,56px)}
+.hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,18rem);align-items:end;gap:20px clamp(24px,4vw,56px);width:100%;min-width:0}
+.hero-main,.hero-aside{display:flex;flex-direction:column;gap:clamp(14px,2vw,22px);min-width:0}
+@media (max-width:1099px){.hero-copy{grid-template-columns:minmax(0,1fr)}}
+.hero-copy > *{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy > :nth-child(2){animation-delay:.12s}.hero-copy > :nth-child(3){animation-delay:.24s}.hero-copy > :nth-child(4){animation-delay:.36s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:var(--f-latin);font-weight:600;font-size:clamp(.8rem,1.4vw,.95rem);letter-spacing:.2em;text-transform:uppercase;color:var(--p2);display:flex;flex-wrap:wrap;gap:.2em 1.2em}
+.eyebrow span + span::before{content:"/";margin-right:1.2em;color:var(--on-pine-soft)}
+.hero h1{font-size:clamp(1.5rem,4.4vw,2.8rem);font-weight:900;line-height:1.5;letter-spacing:.02em;text-shadow:0 2px 6px rgba(5,38,28,.55),0 2px 26px rgba(5,38,28,.7)}
+.hero h1 span{display:inline-block;max-width:100%}
+.hero h1 em{font-style:normal}
+.hero h1 .n{color:var(--hero-n)}.hero h1 .u{color:var(--hero-u)}
+.hero-lead{max-width:30em;color:var(--on-pine);font-size:clamp(.95rem,1.5vw,1.05rem);text-shadow:0 1px 12px rgba(5,38,28,.6)}
+.hero-ctl{position:absolute;z-index:2;right:clamp(16px,4vw,40px);top:clamp(14px,2.4vw,24px);display:flex;align-items:center;gap:8px;background:rgba(5,38,28,.45);border-radius:999px;padding:4px 6px 4px 12px}
+.hero-pause{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--on-pine);background:rgba(5,38,28,.5);cursor:pointer;display:grid;place-items:center;padding:0}
+.hero-pause::before{content:"";width:10px;height:12px;border-inline:3.5px solid var(--on-pine)}
+.hero.is-paused .hero-pause::before{width:0;height:0;border-block:7px solid transparent;border-left:11px solid var(--on-pine);border-right:0;margin-left:3px}
+.dot{width:36px;height:22px;padding:0;border:0;background:none;cursor:pointer;display:grid;align-items:center}
+.dot::before{content:"";grid-area:1/1;height:4px;border-radius:2px;background:rgba(238,245,230,.45)}
+.dot i{grid-area:1/1;height:4px;border-radius:2px;background:var(--p2);width:0}
+.dot.is-on i{animation:fill 7s linear both}
+.hero.is-paused .dot.is-on i{animation:none;width:100%}
+@keyframes fill{from{width:0}to{width:100%}}
+.hero-pause:focus-visible,.dot:focus-visible{outline:3px solid var(--sprout);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.slide,.hero-copy > *{animation:none}}
+@media (max-width:760px){
+  .slides{position:relative;aspect-ratio:16/10}
+  .hero::after{display:none}
+  .hero .wrap{min-height:0;padding-block:28px 40px}
+  .hero-ctl{top:calc(62.5vw - 54px);right:12px}
+}
+
+/* 章インデックス */
+.index{background:var(--surface);border-bottom:1px solid var(--line)}
+.index ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));counter-reset:ch}
+.index li{counter-increment:ch;border-left:1px solid var(--line);--c:var(--sky)}
+.index li:nth-child(2){--c:var(--persimmon)}.index li:nth-child(3){--c:var(--leaf)}.index li:nth-child(4){--c:var(--plum)}.index li:nth-child(5){--c:var(--sun)}
+.index li:last-child{border-right:1px solid var(--line)}
+.index a{display:flex;flex-direction:column;gap:4px;height:100%;padding:18px 16px 20px;color:var(--ink);text-decoration:none;font-size:.86rem;font-weight:700;line-height:1.55;border-top:4px solid var(--c);transition:background .2s}
+.index a::before{content:counter(ch);font-family:var(--f-latin);font-weight:700;font-size:1.5rem;line-height:1;color:var(--c)}
+.index a:hover{background:var(--bg)}
+@media (max-width:860px){.index ol{grid-template-columns:minmax(0,1fr)}.index li{border-inline:0;border-top:1px solid var(--line)}.index li:first-child{border-top:0}.index li:last-child{border-right:0}.index a{flex-direction:row;align-items:baseline;gap:14px;padding:12px 0;border-top:0}.index a::before{font-size:1.15rem;min-width:1em}}
+
+/* 導入 */
+.about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
+.about-grid h2{font-size:clamp(1.45rem,3vw,2.15rem)}
+.about-grid h2 small{display:block;font-family:var(--f-body);font-size:.5em;font-weight:700;letter-spacing:.1em;color:var(--leaf);margin-top:1.1em;line-height:1.8}
+.pull{word-break:auto-phrase;font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.8}
+.for{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(20px,5vw,72px);align-items:start}
+.for h3{font-size:clamp(1.15rem,2vw,1.4rem)}
+.for ul{display:grid;gap:10px}
+.for li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding:14px 18px;border-radius:10px;background:var(--c-soft);line-height:1.75}
+.for li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c);margin-top:.5em}
+.for li span{color:var(--ink-soft);font-size:.92em}
+@media (max-width:760px){.about-grid,.for{grid-template-columns:minmax(0,1fr)}}
+
+/* 章見出し */
+.sec-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(14px,2.4vw,28px);align-items:start;margin-bottom:clamp(28px,4.5vw,48px)}
+.sec-num{font-family:var(--f-latin);font-weight:700;font-size:clamp(3rem,7vw,5.2rem);line-height:.86;color:var(--c)}
+.sec-head h2{font-size:clamp(1.4rem,3.1vw,2.2rem)}
+.sec-head .lede{margin-top:1em;max-width:39em;color:var(--ink-soft)}
+
+/* 1. ハードル */
+.hurdles{display:grid;gap:16px}
+.hurdle{background:var(--surface);border-radius:14px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(16px,4vw,48px);padding:clamp(20px,3.2vw,40px)}
+.hurdle-tag{display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.08em;line-height:1.4;background:var(--c);color:var(--on-c);padding:.35em 1em;border-radius:999px}
+.hurdle-wall{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.1vw,1.45rem);line-height:1.6;margin-top:.7em;word-break:auto-phrase}
+.hurdle-fix{display:flex;flex-direction:column;gap:18px;min-width:0}
+.hurdle-fix h3{font-family:var(--f-body);font-size:1.08rem;line-height:1.6;display:flex;gap:.7em;align-items:baseline}
+.hurdle-fix h3::before{content:"解決策";flex:none;font-size:.7rem;letter-spacing:.1em;border:1.5px solid var(--c);color:var(--c);padding:.2em .7em;border-radius:3px;position:relative;top:-.15em}
+.step h4{font-size:1rem;line-height:1.6}
+.step p{color:var(--ink-soft);margin-top:.35em;max-width:39em}
+.step + .step{padding-top:16px;border-top:1px dashed var(--line)}
+@media (max-width:760px){.hurdle{grid-template-columns:minmax(0,1fr)}}
+.cond{margin-top:16px;background:var(--surface);border-radius:14px;padding:clamp(20px,3.2vw,40px)}
+.cond-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:14px}
+.cond-head h3{font-size:clamp(1.15rem,2.1vw,1.45rem)}
+.key-badge{display:inline-block;font-weight:700;font-size:.8rem;line-height:1.4;background:var(--marker);color:var(--ink);padding:.3em .9em;border-radius:999px}
+.cond-table{min-width:640px;font-size:.92rem;line-height:1.7}
+.cond-table thead th{background:var(--c);color:var(--on-c);padding:10px 14px;letter-spacing:.06em;font-size:.82rem}
+.cond-table tbody tr{border-top:1px solid var(--line)}
+.cond-table tbody th{font-family:var(--f-body);font-size:.92rem;color:var(--ink);white-space:normal;padding:10px 14px;width:9.5em}
+.cond-table tbody td{min-width:0;padding:10px 14px}
+.cond-table tbody td:last-child{width:15em;color:var(--ink-soft);font-weight:700}
+.cond-table .grp th{background:var(--c-soft);font-weight:700;font-size:.98rem;width:auto}
+.cond-table .key.grp th{background:var(--marker)}
+.cond-table .key td:last-child{color:var(--leaf)}
+.cond-note{margin-top:12px;font-size:.86rem;color:var(--ink-soft)}
+
+/* 2. ライフスタイル */
+.life-list{display:grid;gap:clamp(20px,3vw,32px)}
+.life{background:var(--surface);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);min-width:0}
+.life:nth-child(even) .life-media{order:2}
+.life-media{position:relative;min-height:280px;background:var(--c-soft);min-width:0}
+.life-media > .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.life-media.mat{background:var(--photo-mat);display:grid;place-items:center;padding:14px}
+.life-media.mat img{display:block;width:100%;height:auto}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-content:center;padding:clamp(14px,2vw,22px)}
+.trio img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:8px}
+.trio figcaption{margin-top:8px;font-weight:700;font-size:.82rem;line-height:1.5;text-align:center;background:var(--c);color:var(--on-c);border-radius:6px;padding:.4em .5em}
+.trio figcaption small{display:block;font-weight:500;font-size:.72rem}
+.life-body{padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.life-kicker{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;letter-spacing:.12em;color:var(--c);line-height:1.4}
+.life-n{font-family:var(--f-latin);font-size:1.35rem;letter-spacing:0;line-height:1;width:1.9em;height:1.9em;display:grid;place-items:center;border-radius:50%;background:var(--c);color:var(--on-c)}
+.life h3{font-size:clamp(1.15rem,2vw,1.4rem)}
+.life p{color:var(--ink-soft)}
+.life .links{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px;color:var(--ink)}
+@media (max-width:820px){
+  .life{grid-template-columns:minmax(0,1fr)}
+  .life:nth-child(even) .life-media{order:0}
+  .life-media{min-height:0}
+  .life-media:not(.mat):not(.trio){aspect-ratio:16/9}
+}
+
+/* 3. 恵那市 */
+.badge{display:inline-block;font-weight:700;font-size:.82rem;letter-spacing:.06em;background:var(--c);color:var(--on-c);padding:.2em .9em;border-radius:999px;margin-bottom:1em}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,18px);margin-bottom:clamp(24px,4vw,40px)}
+.gallery img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--leaf-soft)}
+@media (max-width:640px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery img:first-child{grid-column:1/-1}}
+.ena-card{background:var(--surface);border-radius:14px;padding:clamp(8px,2vw,20px) clamp(16px,3vw,36px)}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.96rem;line-height:1.8}
+thead th{font-size:.78rem;letter-spacing:.12em;color:var(--ink-soft);text-align:left;padding:12px 16px 12px 0;font-weight:700}
+tbody th{text-align:left;white-space:nowrap;font-weight:700;padding:16px 24px 16px 0;vertical-align:top;font-family:var(--f-display);font-size:1.02rem;color:var(--c)}
+tbody td{padding:16px 0;vertical-align:top;min-width:14em}
+tbody tr{border-top:1px solid var(--line)}
+.private{margin-top:clamp(24px,4vw,40px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(12px,4vw,56px)}
+.private h3{font-size:1.12rem;line-height:1.7}
+.private p{color:var(--ink-soft)}
+.ena-links{margin-top:clamp(28px,4vw,40px)}
+@media (max-width:760px){.private{grid-template-columns:minmax(0,1fr)}}
+
+/* 4. 循環 */
+.cycle{background:var(--pine);color:var(--on-pine)}
+.cycle .sec-num{color:var(--sprout)}
+.cycle .sec-head .lede{color:var(--on-pine-soft)}
+.cycle .sec-head .lede strong{color:var(--on-pine)}
+.story{margin-bottom:clamp(28px,4.5vw,52px)}
+.story img{display:block;width:100%;height:auto;border-radius:14px;background:var(--photo-mat)}
+.cycle-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.ring{width:100%;max-width:500px;height:auto;margin-inline:auto;display:block}
+.ring text{font-family:var(--f-body);font-weight:700}
+.steps-label{font-family:var(--f-latin);font-weight:600;font-size:.78rem;letter-spacing:.2em;color:var(--p2);margin-bottom:10px}
+.steps{counter-reset:st}
+.steps li{counter-increment:st;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;padding:16px 0;border-top:1px solid var(--pine-line);font-weight:700;line-height:1.75;--n:var(--p1)}
+.steps li:nth-child(2){--n:var(--p2)}.steps li:nth-child(3){--n:var(--p3)}.steps li:nth-child(4){--n:var(--p4)}.steps li:nth-child(5){--n:var(--p5)}
+.steps li:last-child{border-bottom:1px solid var(--pine-line)}
+.steps li::before{content:counter(st);font-family:var(--f-latin);font-weight:700;font-size:1rem;width:2em;height:2em;display:grid;place-items:center;border-radius:50%;background:var(--n);color:var(--on-sprout);line-height:1}
+.loop{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--on-pine-soft);font-size:.86rem;font-weight:500}
+.loop svg{flex:none;width:20px;height:20px}
+.cycle-close{margin-top:clamp(36px,6vw,72px);padding-top:clamp(28px,4vw,48px);border-top:1px solid var(--pine-line);display:flex;flex-direction:column;gap:1.1em;max-width:44em}
+.cycle-close .big{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.3vw,1.6rem);line-height:1.85;color:var(--p2);word-break:auto-phrase}
+.cycle-close p{color:var(--on-pine-soft)}
+.cycle a{color:var(--sprout)}
+@media (max-width:860px){.cycle-grid{grid-template-columns:minmax(0,1fr)}.ring{max-width:400px}}
+
+/* 5. ビジネス */
+.biz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.biz > *{background:var(--c-soft);border-radius:14px;border-top:6px solid var(--c);padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.biz h3{font-size:1.15rem}
+.wip{align-self:flex-start;font-size:.76rem;font-weight:700;letter-spacing:.1em;border:1.5px dashed var(--c);color:var(--c);padding:.15em .8em;border-radius:999px}
+@media (max-width:640px){.biz{grid-template-columns:minmax(0,1fr)}}
+
+/* お問合せ */
+.cta-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,5vw,72px);align-items:start}
+.cta-grid h2{font-size:clamp(1.5rem,3.4vw,2.4rem)}
+.cta-grid .prose{margin-top:1.2em}
+.voices{display:flex;flex-direction:column;gap:12px}
+.voices li{background:var(--c-soft);border:2px solid var(--c);border-radius:18px 18px 18px 4px;padding:12px 20px;font-weight:700;line-height:1.7;align-self:flex-start;max-width:100%}
+.voices li:nth-child(2){align-self:flex-end;border-radius:18px 18px 4px 18px}
+.cta-foot{margin-top:clamp(24px,4vw,36px);display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+.cta-foot p{font-weight:700;max-width:26em;line-height:1.7}
+@media (max-width:760px){.cta-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* フッター */
+.rainbow{height:8px;background:linear-gradient(90deg,var(--p1) 0 20%,var(--p2) 0 40%,var(--p3) 0 60%,var(--p4) 0 80%,var(--p5) 0)}
+.site-foot{background:var(--pine);color:var(--on-pine)}
+.site-foot .wrap{padding-block:clamp(40px,6vw,72px) 28px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,2fr) minmax(0,5fr);gap:clamp(24px,4vw,56px)}
+.foot-brand{font-family:var(--f-latin);font-weight:700;font-size:1.6rem;line-height:1.2}
+.foot-brand small{display:block;font-family:var(--f-body);font-size:.78rem;font-weight:500;letter-spacing:.1em;color:var(--on-pine-soft);margin-bottom:6px}
+.site-foot h2{font-family:var(--f-latin);font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--p2);margin-bottom:10px}
+.site-foot li{line-height:1.6;padding-block:6px}
+.site-foot a{color:var(--on-pine);text-decoration:none;font-size:.92rem}
+.site-foot a:hover{text-decoration:underline}
+.copy{margin-top:clamp(28px,4vw,48px);padding-top:18px;border-top:1px solid var(--pine-line);font-size:.76rem;color:var(--on-pine-soft);line-height:1.7}
+@media (max-width:760px){.foot-grid{grid-template-columns:minmax(0,1fr)}}
+
+[id]{scroll-margin-top:84px}
+/* お問合せページ */
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.page-head{background:var(--pine);color:var(--on-pine)}
+.page-head .wrap{padding-block:clamp(36px,6vw,72px) clamp(32px,5vw,60px)}
+.crumb{display:flex;flex-wrap:wrap;gap:.6em;font-size:.82rem;color:var(--on-pine-soft);margin-bottom:1.2em}
+.crumb a{color:var(--on-pine-soft)}
+.crumb li + li::before{content:"›";margin-right:.6em}
+.page-head h1{font-size:clamp(1.8rem,4.6vw,3rem);font-weight:900;letter-spacing:.04em}
+.page-head .eyebrow{margin-bottom:.6em}
+.page-head p.lead{margin-top:1em;max-width:36em;color:var(--on-pine)}
+
+/* 魅力ある地方の紹介 */
+.toc{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:calc(env(safe-area-inset-top,0px) + 57px);z-index:5}
+.toc .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;padding-block:12px}
+.toc-g{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.toc-label{font-size:.76rem;font-weight:700;letter-spacing:.1em;color:var(--ink-soft)}
+.toc a{font-size:.88rem;font-weight:700;color:var(--ink);text-decoration:none;background:var(--bg);border:1.5px solid var(--line);border-radius:999px;padding:.25em 1em;line-height:1.6;transition:border-color .2s,background .2s}
+.toc a:hover{border-color:var(--leaf);background:var(--leaf-soft)}
+@media (max-width:640px){.toc{position:static}}
+.area{font-size:clamp(1.3rem,2.6vw,1.8rem);display:flex;align-items:center;gap:16px;margin:clamp(40px,7vw,80px) 0 clamp(18px,3vw,28px)}
+.area:first-child{margin-top:0}
+.area::after{content:"";flex:1;height:2px;background:var(--line)}
+.town{background:var(--surface);border-radius:16px;padding:clamp(20px,3.6vw,44px);scroll-margin-top:130px}
+.town + .town{margin-top:clamp(24px,4vw,40px)}
+.town-pref{font-weight:700;font-size:.86rem;letter-spacing:.14em;color:var(--leaf)}
+.town-head h3{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;letter-spacing:.04em;line-height:1.3}
+.town-lead{margin-top:.8em;max-width:46em}
+.town .gallery{margin-block:clamp(18px,3vw,28px)}
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
+@media (max-width:820px){.cats{grid-template-columns:minmax(0,1fr)}}
+.cat{background:var(--c-soft);border-radius:12px;padding:clamp(16px,2.2vw,24px);min-width:0}
+.cat--wide,.cat:nth-child(5){grid-column:1/-1}
+.cat h4{display:flex;align-items:center;gap:10px;font-size:1.08rem;line-height:1.5;margin:0 0 10px;color:var(--ink)}
+.cat-n{flex:none;font-family:var(--f-latin);font-size:.95rem;width:1.9em;height:1.9em;display:grid;place-items:center;border-radius:50%;background:var(--c);color:var(--on-c);line-height:1}
+.cat p{font-size:.95rem;line-height:1.85;color:var(--ink)}
+.cat p + p{margin-top:.8em}
+.cat ul{margin-top:12px;display:grid;gap:10px}
+.cat li{font-size:.92rem;line-height:1.85;color:var(--ink-soft);padding-left:1.1em;position:relative}
+.cat li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--c)}
+.cat li > strong:first-child{color:var(--ink)}
+.cat li a,.cat p a{font-weight:700}
+.town-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:clamp(18px,3vw,28px)}
+.back{margin-top:clamp(32px,5vw,56px);display:flex;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+<header class="site-head" lang="ja">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="家族とともに造るライフスタイル支援 mirai cycle">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" fill="none" stroke="var(--leaf)" stroke-width="3" stroke-dasharray="66 22" stroke-linecap="round" transform="rotate(-60 20 20)"/><path d="M20 27c0-6 2-10 7-12-1 6-3 9-7 12z" fill="var(--leaf)"/><path d="M20 27c0-5-2-8-6-9 0 5 2 8 6 9z" fill="var(--persimmon)"/></svg>
+      <span class="brand-name">mirai cycle<span class="brand-tag">家族とともに造るライフスタイル支援</span></span>
+    </a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="index.html">ホームページ</a>
+      <a href="blog.html">ブログ</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+  </div>
+</header>
+
+<main lang="ja">
+  <section class="page-head">
+    <div class="wrap">
+      <ol class="crumb"><li><a href="index.html">トップページ</a></li><li aria-current="page">魅力ある地方の紹介</li></ol>
+      <p class="eyebrow"><span>Regions</span></p>
+      <h1>魅力ある地方の紹介</h1>
+      <p class="lead">自然・環境、生活・利便性、人間関係・コミュニティ、仕事・経済、子育て環境・教育の視点から、魅力ある「トカイナカ」をご紹介します。</p>
+    </div>
+  </section>
+  <nav class="toc" aria-label="地方から探す"><div class="wrap"><div class="toc-g"><span class="toc-label">東海地方</span><a href="#ena">恵那市</a><a href="#nakatsugawa">中津川市</a><a href="#shizuoka">静岡市</a></div><div class="toc-g"><span class="toc-label">関東地方</span><a href="#tako">多古町</a></div><div class="toc-g"><span class="toc-label">四国地方</span><a href="#miyoshi">三好市</a><a href="#kamiyama">神山町</a></div></div></nav>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="area">東海地方</h2>
+
+      <article class="town" id="ena">
+        <header class="town-head">
+          <p class="town-pref">岐阜県</p>
+          <h3>恵那市</h3>
+          <p class="town-lead">恵那市は、単なる地方都市ではなく、<strong>宝島社『田舎暮らしの本』の「住みたい田舎ベストランキング」</strong>（人口3万人〜5万人未満のまち）において、<strong>2024年・2025年と2年連続で「総合部門」「子育て世代部門」の第1位</strong>を獲得している、客観的にも極めて評価の高い自治体です。</p>
+        </header>
+        <div class="gallery"><img src="ena_yama.jpg" alt="写真：雪をかぶった山と、ふもとに広がる街並み" loading="lazy"><img src="ena_kyo.jpg" alt="写真：湖にかかる赤い橋と、岸辺に咲く桜" loading="lazy"><img src="ena_tanada.jpg" alt="写真：水面に空が映る棚田" loading="lazy"></div>
+        <div class="cats">
+          <section class="cat c-leaf">
+            <h4><span class="cat-n">1</span>自然・環境</h4>
+            <p>恵那市の自然環境は、公的な評価や認定を受けた「守られた景観」が多く存在します。</p><ul><li><strong>日本の棚田百選<a href="https://sakaori-tanada.com/" target="_blank" rel="noopener">「坂折棚田」</a>:</strong> 中野方町にある「坂折棚田（さかおりたなだ）」は、農林水産省の「日本の棚田百選」に認定されています。約400年前から続く石積みの景観は、NPO法人恵那市坂折棚田保存会によって維持されています。</li><li><strong>農村景観日本一:</strong> 岩村町富田地区は、1989年に京都大学の国土問題研究会（当時）から「農村景観日本一」の称号を与えられました。瓦屋根の日本家屋と田園風景が広がるこの地区は、国土庁（現・国土交通省）の「農村景観百選」にも選定されています。</li><li><strong>県立自然公園「恵那峡」:</strong> 大井ダムの建設によって生まれた人造湖を中心とした景観で、岐阜県立自然公園に指定されています。国の天然記念物「傘岩」などの奇岩怪石が見どころです。</li></ul>
+          </section>
+          <section class="cat c-sky">
+            <h4><span class="cat-n">2</span>生活・利便性</h4>
+            <p>「トカイナカ（都会＋田舎）」と称される通り、都市機能と田舎暮らしのバランスが良いです。</p><ul><li><strong>医療体制（二次救急）:</strong> 地域の中核病院である「市立恵那病院」があります。ここは「二次救急医療機関」として入院や手術が必要な重症患者に対応しており、地域医療の中枢を担っています。</li><li><strong>アクセス:</strong> JR中央本線「恵那駅」から「名古屋駅」までは、快速電車で約1時間強（60〜70分程度）でアクセス可能です。通勤・通学圏内として機能しています。</li><li><strong>住居支援制度:</strong> 50歳未満の方が住宅を取得する場合の「えなで暮らそう奨励金」や、東京圏等からの移住者を対象とした「移住支援金」など、具体的な金銭的支援制度が運用されています（※年度により要件変動あり）。</li></ul>
+          </section>
+          <section class="cat c-plum">
+            <h4><span class="cat-n">3</span>人間関係・コミュニティ</h4>
+            <p>移住者を受け入れる土壌があります。</p><ul><li><strong>移住者への評価:</strong> <mark>「住みたい田舎ベストランキング」で「若者世代・単身者部門」でも上位</mark>（2025年は東海エリア3位など）にランクインしており、外部からの参入障壁が比較的低いです。</li><li><strong>地域活動の受け皿:</strong> 恵那市は市民活動が活発で、特に「NPO法人ふるさと恵那市を元気にする会」などが移住定住の相談窓口として行政と連携しています。また、地歌舞伎の保存会など、地域の伝統芸能を通じたコミュニティ形成も盛んです。</li></ul>
+          </section>
+          <section class="cat c-persimmon">
+            <h4><span class="cat-n">4</span>仕事・経済</h4>
+            <p>農業だけでなく、工業団地を有する「モノづくりのまち」としての側面があります。</p><ul><li><strong>産業構造:</strong> 恵那市には「恵那テクノパーク」などの工業団地があり、自動車関連部品や精密機器などの製造業が集積しています。</li><li><strong>起業・就業支援:</strong> 岐阜県外からの移住者が起業や就業をする場合、条件を満たせば「清流の国ぎふ移住支援金」（単身最大60万円、世帯最大100万円 ※国・県の制度に準拠）の対象となります。</li><li><strong>テレワーク環境:</strong> 移住支援金の要件には「テレワーク」も含まれており、都市部の仕事を続けながら居住するスタイルも行政として推奨しています。</li></ul>
+          </section>
+          <section class="cat c-sun">
+            <h4><span class="cat-n">5</span>子育て環境・教育</h4>
+            <p>この分野は恵那市が最も力を入れており、ランキング1位の主要因となっています。</p><ul><li><strong>医療費の無償化:</strong> 子どもの医療費助成（保険診療の自己負担分無料）の対象年齢は、「18歳到達後の年度末（高校生等）まで」拡大されています。所得制限もありません。</li><li><strong>待機児童対策:</strong> 認定こども園の整備などを進めており、<mark>共働き世帯へのサポート体制を強化</mark>しています。</li><li><strong>教育の特色:</strong> 市内の小中学校では、<mark>地域の人材を活用した「恵那学」</mark>や、ICTを活用した教育、そして英語教育（ALTの配置など）を推進しています。</li></ul>
+          </section>
+          <section class="cat c-leaf cat--wide">
+            <h4><span class="cat-n">6</span>その他</h4>
+            <p>帰省する際、<a href="https://ginnomori.jp/" target="_blank" rel="noopener">「銀の森」</a>によく立ち寄りますが、商品を手に取ったり、園内を散策すると地元を盛り上げようという気質を感じます。</p><p>例えば、銀の森は「食材の宝庫である恵那の自然」を価値に変えることをミッションとしているため、 地元農家が生産した栗、果物、ハチミツなどの農産物を積極的に仕入れることで生産者を支援しています。</p><p>また、自社の敷地を開放し、地域の個人作家や小規模な飲食店が商品を販売できる「マルシェ」を開催して、事業者の販路を支援しています。</p><p>また、将来のビジネスを担う人材育成として、地元の高校と連携したプロジェクトも行っています。（☞miraicycleが目指す教育と同じです。）</p><p>一企業ですが、恵那市の魅力を伝える良い事例だと思います。</p>
+          </section>
+        </div>
+        <div class="town-links"><a class="btn" href="https://www.city.ena.lg.jp/" target="_blank" rel="noopener">恵那市の公式HP</a></div>
+      </article>
+
+      <article class="town" id="nakatsugawa">
+        <header class="town-head">
+          <p class="town-pref">岐阜県</p>
+          <h3>中津川市</h3>
+          <p class="town-lead">中津川市は、<strong>「リニア中央新幹線」の岐阜県駅（仮称）の設置</strong>が進む未来志向の側面と、<strong>中山道の宿場町</strong>としての歴史的遺産が共存する、変革の時を迎えている自治体です。</p>
+        </header>
+        <div class="gallery"><img src="region_nakatsugawa1.jpg" alt="写真：山あいを流れる川と街並みを見下ろす風景" loading="lazy"><img src="region_nakatsugawa2.jpg" alt="写真：石畳の坂道に古い家並みが続く宿場町" loading="lazy"><img src="region_nakatsugawa3.jpg" alt="写真：山並みを背にした市街地と川" loading="lazy"></div>
+        <div class="cats">
+          <section class="cat c-leaf">
+            <h4><span class="cat-n">1</span>自然・環境</h4>
+            <p>市域の約8割を森林が占め、木曽川水系の上流に位置する豊かな自然環境が特徴です。</p><ul><li><strong>日本百名山と銘木:</strong> 日本百名山の一つである「恵那山」を擁し、伊勢神宮の式年遷宮で御神木として使用される「東濃ヒノキ」の主要産地（特に加子母地区）として知られています。</li><li><strong>馬籠宿（まごめじゅく）:</strong> 江戸時代の面影を残す中山道の宿場町・馬籠宿は、<mark>ミシュラン・グリーンガイド・ジャポンで一つ星</mark>を獲得しており、国際的な知名度を持つ観光資源として地域経済を支えています。</li><li><strong>清流:</strong> <mark>付知川（つけちがわ）など、アユ釣りが盛ん</mark>な清流が市内を流れ、環境省の<mark>「名水百選」</mark>に選ばれたスポットも有しています。</li></ul>
+          </section>
+          <section class="cat c-sky">
+            <h4><span class="cat-n">2</span>生活・利便性</h4>
+            <p>名古屋圏へのアクセスが確立されており、さらに将来的な交通革命の中心地となることが確定しています。</p><ul><li><strong>リニア中央新幹線:</strong> <mark>中津川市西部にリニア中央新幹線の「岐阜県駅（仮称）」と「車両基地」の建設</mark>が進んでいます。開業すれば品川まで約1時間、名古屋まで約10分という圧倒的なアクセス性が生まれます。</li><li><strong>現在のアクセス:</strong> 現在でもJR中央本線「中津川駅」から特急「しなの」や快速列車を利用でき、<mark>名古屋駅まで最短50分〜1時間強で</mark>移動可能です。始発駅となる列車も多く、座って通勤しやすい環境です。</li><li><strong>医療体制:</strong> 地域医療支援病院および災害拠点病院に指定されている「中津川市民病院」があり、24時間体制の救急医療を担っています。また、坂下地区には国民健康保険坂下病院もあり、広い市域をカバーしています。</li></ul>
+          </section>
+          <section class="cat c-plum">
+            <h4><span class="cat-n">3</span>人間関係・コミュニティ</h4>
+            <p>伝統文化を核としたコミュニティ活動と、積極的な移住支援策が展開されています。</p><ul><li><strong>地歌舞伎の聖地:</strong> 岐阜県は地歌舞伎が盛んですが、中でも中津川市には「明治座（加子母）」、「常盤座（高山）」、「蛭子座（蛭川）」といった歴史的な芝居小屋が現存しています。保存会による定期公演が行われ、住民同士の結束の場となっています。</li><li><strong>移住・定住支援:</strong> 「中津川市定住推進課」を設置し、空き家バンク制度を運用しています。また、移住者向けの「お試し住宅」や、住宅取得・改修に対する補助金制度（中津川市定住促進住宅取得補助金など）が整備されています。</li></ul>
+          </section>
+          <section class="cat c-persimmon">
+            <h4><span class="cat-n">4</span>仕事・経済</h4>
+            <p>安定した製造業の基盤と、全国的に有名な地域ブランド産品を持っています。</p><ul><li><strong>大手企業の拠点:</strong> 三菱電機株式会社の中津川製作所があり、換気送風機や太陽光発電システムなどの製造拠点として多くの雇用を生み出しています。これに関連する協力企業も多く、製造業が経済の柱の一つです。</li><li><strong>栗きんとん発祥の地:</strong> 秋の味覚「栗きんとん」の発祥の地とされており、「すや」「川上屋」をはじめとした老舗和菓子店が市内に多数存在します。秋の観光シーズンには菓子店巡りの観光客で賑わい、地域経済に大きく貢献しています。</li><li><strong>木材産業:</strong> 東濃ヒノキを活用した製材業、建築業、木工製品の製造も、地域の伝統産業として根付いています。</li></ul>
+          </section>
+          <section class="cat c-sun">
+            <h4><span class="cat-n">5</span>子育て環境・教育</h4>
+            <p>子育て世帯の経済的負担を軽減する施策と、地域資源を活かした教育が行われています。</p><ul><li><strong>医療費の無償化:</strong> 18歳到達後の最初の3月31日までの子どもを対象に、通院・入院にかかる医療費（保険診療分）を全額助成しています（所得制限なし）。</li><li><strong>木育（もくいく）の推進:</strong> 豊富な森林資源を活かし、幼少期から木に触れる「木育」を推進しています。例えば、新生児に木のおもちゃを贈呈する事業などを行っています。</li><li><strong>科学教育:</strong> 「中津川市子ども科学館」があり、子どもたちが科学や技術に触れる機会を提供しています。これは工業都市としての側面を教育に反映させた施設です。</li></ul>
+          </section>
+          <section class="cat c-leaf cat--wide">
+            <h4><span class="cat-n">6</span>その他</h4>
+            <p>中津川市にはリニアの駅が建設中ですが、鉄道も恵那市に比べて中津川市の方が早かったという歴史があります。はじめは、恵那市を先にという話があったのですが、鉄道が来たら恵那市が寂れるとの反対運動が生まれ、恵那市を飛び越え先に中津川市に駅が来た歴史があります。結局、中津川市の方が栄えました。中津川市は、新しいものを取り込む力が優れているのかもしれません。</p>
+          </section>
+        </div>
+        <div class="town-links"><a class="btn" href="https://www.city.nakatsugawa.lg.jp/index.html" target="_blank" rel="noopener">中津川市の公式HP</a></div>
+      </article>
+
+      <article class="town" id="shizuoka">
+        <header class="town-head">
+          <p class="town-pref">静岡県</p>
+          <h3>静岡市</h3>
+          <p class="town-lead">静岡市は、2005年に複数の自治体が合併して誕生した<strong>政令指定都市</strong>であり、都市機能と広大な自然が共存する、非常に面積の広い自治体です。</p>
+        </header>
+        <div class="gallery"><img src="region_shizuoka1.jpg" alt="写真：茶畑と港町の向こうに富士山を望む風景" loading="lazy"><img src="region_shizuoka2.jpg" alt="写真：上空から見た市街地と海、遠くに富士山" loading="lazy"><img src="region_shizuoka3.jpg" alt="写真：夕暮れの富士山と港の夜景" loading="lazy"></div>
+        <div class="cats">
+          <section class="cat c-leaf">
+            <h4><span class="cat-n">1</span>自然・環境</h4>
+            <p>海から高山まで、標高差2,500mを超える多様な自然環境を有しており、国際的に認められた資産があります。</p><ul><li><strong>世界文化遺産「三保の松原」:</strong> 富士山の構成資産として世界文化遺産に登録されています。駿河湾越しに富士山を望む景勝地であり、国の「名勝」にも指定されています。</li><li><strong>ユネスコエコパーク「南アルプス」:</strong> 市の北部は南アルプス（赤石山脈）に位置し、ユネスコエコパーク（生物圏保存地域）に登録されています。絶滅危惧種を含む豊かな生態系が保持されています。</li><li><strong>気候:</strong> 気象庁のデータによると、静岡市は冬の日照時間が長く、平野部での積雪は極めて稀です。年間平均気温も約16℃前後（平年値）と温暖な気候区分に属します。</li></ul>
+          </section>
+          <section class="cat c-sky">
+            <h4><span class="cat-n">2</span>生活・利便性</h4>
+            <p>政令指定都市としての都市機能が集約されており、交通と医療の利便性が確保されています。</p><ul><li><strong>新幹線・交通:</strong> JR東海「静岡駅」には東海道新幹線「ひかり」が停車し、東京駅まで約1時間、名古屋駅まで約1時間でアクセス可能です。また、市内は「オムニバスタウン（バス利用促進のモデル都市）」の指定を国から受けており、バス網が発達しています。</li><li><strong>医療体制:</strong> 高度医療を提供する「静岡県立総合病院」、「静岡赤十字病院」、「静岡市立静岡病院」などの大規模病院が充実しています。</li><li><strong>小児専門病院:</strong> 専門的な小児医療を行う「静岡県立こども病院」が市内にあり、小児救急医療拠点病院としての機能を担っています。県内全域から患者が訪れる高度な小児医療拠点が生活圏にあることは大きな特徴です。</li></ul>
+          </section>
+          <section class="cat c-plum">
+            <h4><span class="cat-n">3</span>人間関係・コミュニティ</h4>
+            <p>災害対策への意識の高さと、地域主導のまちづくり組織が制度化されています。</p><ul><li><strong>地域主導の組織:</strong> 静岡市では、小学校区単位で「まちづくり協議会」が組織されています。これは単なる自治会の上部組織ではなく、市と協働して地域の課題解決に取り組む認定団体として活動しており、地域コミュニティの基盤となっています。</li><li><strong>防災組織率:</strong> 南海トラフ地震への警戒から、自主防災組織の活動が活発です。内閣府の防災表彰を受ける組織も多く、地域での防災訓練や備蓄活動が日常的に行われています。</li></ul>
+          </section>
+          <section class="cat c-persimmon">
+            <h4><span class="cat-n">4</span>仕事・経済</h4>
+            <p>特定の製造業において、圧倒的なシェアと歴史を持っています。</p><ul><li><strong>模型の世界首都:</strong> 静岡市は、タミヤ、青島文化教材社、ハセガワなどが本社を置く「模型の世界首都」です。プラスチックモデルの出荷額は全国シェアの約8割（静岡県の統計）を占め、「静岡ホビーショー」などの関連イベントは大きな経済効果を生んでいます。</li><li><strong>缶詰産業:</strong> 清水区を中心に、日本で初めてマグロ油漬け缶詰（ツナ缶）が製造された歴史があり、現在も缶詰・びん詰の製造品出荷額等で全国上位のシェアを持っています（いなば食品、はごろもフーズなどが拠点）。</li><li><strong>農業遺産:</strong> 「静岡の茶草場農法」や「わさび栽培（有東木地区が発祥の地）」など、世界農業遺産や日本農業遺産に認定された伝統的な農業が経済活動として継続されています。</li></ul>
+          </section>
+          <section class="cat c-sun">
+            <h4><span class="cat-n">5</span>子育て環境・教育</h4>
+            <p>子育て支援の数値目標達成と、高等教育機関の集積があります。</p><ul><li><strong><mark>待機児童数ゼロ</mark>:</strong> 静岡市は保育所等の利用定員拡大を進め、令和6年（2024年）4月1日時点を含め、数年連続で国基準の<strong>待機児童数ゼロ</strong>を達成しています（静岡市発表）。</li><li><strong>子ども医療費助成:</strong> 「静岡市子ども医療費助成制度」により、高校3年生相当（18歳到達後の3月31日）までの通院・入院にかかる医療費助成を行っています（通院は1回500円の自己負担、入院は無料などの規定あり）。</li><li><strong>文教地区:</strong> 国立の静岡大学、公立の静岡県立大学をはじめ、常葉大学などの私立大学も複数立地しており、県内における高等教育機関の集積地となっています。</li></ul>
+          </section>
+          <section class="cat c-leaf cat--wide">
+            <h4><span class="cat-n">6</span>その他</h4>
+            <p>移住先として非常に人気のある地方です。海もあり、山もあり、暖かい！、交通の便も良い、住むには最高の地方です。</p>
+          </section>
+        </div>
+        <div class="town-links"><a class="btn" href="https://www.city.shizuoka.lg.jp/" target="_blank" rel="noopener">静岡市の公式HP</a></div>
+      </article>
+
+      <h2 class="area">関東地方</h2>
+
+      <article class="town" id="tako">
+        <header class="town-head">
+          <p class="town-pref">千葉県</p>
+          <h3>多古町</h3>
+          <p class="town-lead">多古町は、成田国際空港の東隣に位置し、<strong>「空港に近い田園都市」</strong>としての利便性と、ブランド米を生み出す豊かな土壌が共存する町です。</p>
+        </header>
+        <div class="gallery"><img src="region_tako1.jpg" alt="写真：上空から見た一面の水田" loading="lazy"><img src="region_tako2.jpg" alt="写真：川沿いに咲くアジサイと小舟" loading="lazy"><img src="region_tako3.jpg" alt="写真：木立とアジサイに囲まれた寺の参道" loading="lazy"></div>
+        <div class="cats">
+          <section class="cat c-leaf">
+            <h4><span class="cat-n">1</span>自然・環境</h4>
+            <p>町を流れる栗山川沿いの景観と、歴史ある田園風景が特徴です。</p><ul><li><strong>あじさい遊歩道:</strong> 栗山川の堤防沿い約1kmにわたって約1万株のアジサイが植えられており、6月には「あじさい祭り」が開催されます。観光スポットとしてだけでなく、住民の散策路として整備されています。</li><li><strong>多古米の田園風景:</strong> 多古町の農地は、ミネラル分が多い粘土質の土壌が広がっており、ブランド米「多古米」の産地として知られています。秋には黄金色の稲穂が広がる日本の原風景が見られます。</li></ul>
+          </section>
+          <section class="cat c-sky">
+            <h4><span class="cat-n">2</span>生活・利便性</h4>
+            <p>鉄道駅はありませんが、成田空港へのアクセスに特化した交通網と、自治体運営の医療機関があります。</p><ul><li><strong>空港シャトルバス:</strong> 多古町と成田空港（第2ターミナル）を結ぶ「多古－成田空港間シャトルバス」が運行されています。最短約20分で空港へアクセスでき、そこから都心や海外へ移動できるため、意外な交通の要衝となっています。運賃は大人300円（2024年時点）と低価格に設定されています。</li><li><strong>医療体制:</strong> 自治体運営の「国保多古中央病院」があります。内科、外科、小児科など複数の診療科を持つ地域の中核病院であり、救急医療や人工透析センターも備えています。</li><li><strong>デマンドタクシー:</strong> 町内全域をカバーするデマンド型交通（予約制乗合タクシー）を運行しており、車を持たない高齢者等の移動手段を公的に確保しています。</li></ul>
+          </section>
+          <section class="cat c-plum">
+            <h4><span class="cat-n">3</span>人間関係・コミュニティ</h4>
+            <p>伝統的な祭りがコミュニティの結束を高める役割を果たしています。</p><ul><li><strong>多古祇園祭:</strong> 江戸時代から続くとされる祭礼で、千葉県の「無形民俗文化財」に指定されています。高さ約10メートルの山車（だし）の上で演じられる芸座など、地域住民が継承する伝統芸能が披露される場となっています。</li><li><strong>しいの木・いきいきサロン:</strong> 高齢者の閉じこもり防止と交流促進のため、町内各地区の公会堂などでサロン活動が行われており、社会福祉協議会などが支援しています。</li></ul>
+          </section>
+          <section class="cat c-persimmon">
+            <h4><span class="cat-n">4</span>仕事・経済</h4>
+            <p>農業が基幹産業であり、特に「食」に関するブランド力が高いことが経済的特徴です。</p><ul><li><strong><mark>幻の米「多古米」</mark>:</strong> 多古米コシヒカリは、過去に「食味日本一」に輝いた実績があり、平成26年の皇室行事「新嘗祭（にいなめさい）」の献穀米にも選ばれました。生産量が限られているため市場流通が少なく、「幻の米」として高付加価値で取引されています。</li><li><strong><mark>ヤマトイモ</mark>:</strong> 千葉県内でも有数のヤマトイモの産地であり、粘りの強さが特徴です。</li><li><strong>道の駅 多古（あじさい館）:</strong> 栗山川沿いにある道の駅は、年間を通じて多くの来場者があり、地域の農産物販売拠点として経済を牽引しています。</li></ul>
+          </section>
+          <section class="cat c-sun">
+            <h4><span class="cat-n">5</span>子育て環境・教育</h4>
+            <p>子育て世帯の経済的負担を大幅に軽減する施策と、施設一体型の教育環境があります。</p><ul><li><strong>給食費の無償化:</strong> 町立の小中学校に通う児童・生徒の給食費を全額無償化しています。</li><li><strong>医療費の無償化:</strong> 0歳から18歳（高校生相当）までの子どもの医療費（保険診療分）を、通院・入院ともに無料（現物給付）としています。</li><li><strong>保育料の無償化:</strong> 所得制限を設けず、町内在住の0歳～5歳児の保育料を無償化しています（国基準の上乗せ支援）。</li><li><strong>多古町立多古こども園:</strong> 幼稚園と保育所の機能を併せ持つ「認定こども園」として整備されており、就学前の教育・保育を一体的に提供しています。</li></ul>
+          </section>
+        </div>
+        <div class="town-links"><a class="btn" href="https://www.town.tako.chiba.jp/" target="_blank" rel="noopener">多古町の公式HP</a></div>
+      </article>
+
+      <h2 class="area">四国地方</h2>
+
+      <article class="town" id="miyoshi">
+        <header class="town-head">
+          <p class="town-pref">徳島県</p>
+          <h3>三好市</h3>
+          <p class="town-lead">三好市は「四国のへそ」と呼ばれ、<strong>世界農業遺産</strong>に認定された独自の景観と、世界レベルのウォータースポーツの聖地としての側面を持つ、国際色豊かな地域です。</p>
+        </header>
+        <div class="gallery"><img src="region_miyoshi1.jpg" alt="写真：山あいの斜面に家と畑が広がる集落" loading="lazy"><img src="region_miyoshi2.jpg" alt="写真：渓谷にかかる鉄橋を渡る列車" loading="lazy"><img src="region_miyoshi3.jpg" alt="写真：川沿いに広がる市街地を上空から見た風景" loading="lazy"></div>
+        <div class="cats">
+          <section class="cat c-leaf">
+            <h4><span class="cat-n">1</span>自然・環境</h4>
+            <p>三好市の自然環境は、単なる景勝地というだけでなく、国際機関や競技団体からの評価を受けています。</p><ul><li><strong>世界農業遺産「にし阿波の傾斜地農耕システム」:</strong> 三好市を含む地域で行われている、40度を超える急傾斜地での伝統的な農耕システムは、<mark>国連食糧農業機関（FAO）から世界農業遺産（GIAHS）に認定</mark>されています。カヤを敷き詰めて土壌流出を防ぐ独自の農法が、美しい景観を作っています。</li><li><strong><mark>ラフティング世界選手権開催地</mark>:</strong> 吉野川の大歩危（おおぼけ）・小歩危（こぼけ）峡谷は、日本一の激流と言われ、2017年には「ラフティング世界選手権」が開催されました。世界中のパドラーが憧れるフィールドです。</li><li><strong>国指定天然記念物:</strong> 大歩危・小歩危の結晶片岩（けっしょうへんがん）は、国の天然記念物に指定されており、地質学的にも貴重な景観が保護されています。</li></ul>
+          </section>
+          <section class="cat c-sky">
+            <h4><span class="cat-n">2</span>生活・利便性</h4>
+            <p>四国中央部の交通拠点としての機能と、県西部を支える医療体制があります。</p><ul><li><strong>交通の要衝「阿波池田駅」:</strong> JR土讃線の「阿波池田駅」は、全ての特急列車が停車する主要駅です。<mark>岡山駅、高松駅、高知駅のいずれへも乗り換えなしでアクセス可能で、四国内の移動におけるハブ機能</mark>を担っています。</li><li><strong>地域医療の拠点:</strong> 「徳島県立三好病院」が市内にあり、救命救急センター、災害拠点病院、地域周産期母子医療センターなどの指定を受けています。県西部（三好圏域）の中核病院として高度医療を提供しています。</li><li><strong>光ファイバー網:</strong> 全市域に光ファイバー網が整備されており、<mark>山間部であっても高速インターネット環境が利用可能</mark>です。</li></ul>
+          </section>
+          <section class="cat c-plum">
+            <h4><span class="cat-n">3</span>人間関係・コミュニティ</h4>
+            <p>歴史的な背景と、外国人観光客の受け入れを通じた<mark>オープンな地域性</mark>があります。</p><ul><li><strong>サステナブルな観光地:</strong> 国際的な認証団体グリーン・デスティネーションズによる<mark>「世界の持続可能な観光地トップ100選」</mark>に複数回選出されています。東洋文化研究家アレックス・カー氏による<mark>古民家再生（桃源郷祖谷の山里など）</mark>をきっかけにインバウンド受入が進んでおり、<mark>地域全体で外部の人を受け入れる意識</mark>が醸成されています。</li><li><strong>平家伝説のコミュニティ:</strong> 日本三大秘境の一つ「祖谷（いや）」地域には、平家の落人伝説が残り、国指定重要有形民俗文化財である「祖谷のかずら橋」や、伝統芸能が地域住民によって守り継がれています。</li></ul>
+          </section>
+          <section class="cat c-persimmon">
+            <h4><span class="cat-n">4</span>仕事・経済</h4>
+            <p><mark>観光資源を活かした産業</mark>と、<mark>通信インフラを活かした新しい働き方</mark>が定着しています。</p><ul><li><strong><mark>観光産業の集積:</mark></strong> 祖谷温泉郷やキャンプ場、ラフティングツアー会社など、観光・レジャー関連の事業者が多く存在します。特にインバウンド需要の回復により、宿泊業やサービス業での雇用が見られます。</li><li><strong><mark>サテライトオフィス誘致</mark>:</strong> 整備された通信環境と古民家を活用し、IT企業などのサテライトオフィス誘致を行っています。都市部の企業が拠点を構える事例（廃校活用オフィスなど）があり、新しい雇用の形が生まれています。</li><li><strong>地酒の街:</strong> 「四国の灘」とも称されるほど酒造りが盛んで、現在も「三芳菊酒造」「芳水酒造」などの酒蔵が稼働しており、地域産品として経済に貢献しています。</li></ul>
+          </section>
+          <section class="cat c-sun">
+            <h4><span class="cat-n">5</span>子育て環境・教育</h4>
+            <p>徳島県独自の教育制度と、経済的な支援策が充実しています。</p><ul><li><strong>デュアルスクール制度:</strong> 徳島県独自の制度で、地方（三好市）と都市部の2つの学校を行き来できる「デュアルスクール」を実施しています。住民票を異動させずに、三好市の小中学校で期間限定の学校生活を送ることができ、<mark>「教育移住」や「二地域居住」を検討</mark>する家庭に利用されています。</li><li><strong>医療費無償化:</strong> 三好市では、18歳到達後の最初の3月31日までの子どもを対象に、通院・入院にかかる医療費（保険診療分）を全額助成しています（所得制限なし）。</li><li><strong>出産・入学祝金:</strong> 第1子からの出産祝金や、小学校・中学校入学時の祝金制度（地域通貨等での支給実績あり）など、独自の経済支援を行っています。</li></ul>
+          </section>
+        </div>
+        <div class="town-links"><a class="btn" href="https://www.miyoshi.i-tokushima.jp/" target="_blank" rel="noopener">三好市の公式HP</a></div>
+      </article>
+
+      <article class="town" id="kamiyama">
+        <header class="town-head">
+          <p class="town-pref">徳島県</p>
+          <h3>神山町</h3>
+          <p class="town-lead">神山町は、単なる「田舎」ではなく、<strong><mark>「地方創生の聖地（モデルケース）」</mark></strong>として国内外から注目されており、行政とNPO、住民が連携して「創造的過疎」という戦略的なコンセプトを掲げている自治体です。</p>
+        </header>
+        <div class="gallery"><img src="region_kamiyama1.jpg" alt="写真：山に囲まれた集落を高台から見下ろす風景" loading="lazy"><img src="region_kamiyama2.jpg" alt="写真：木造の大きな建物と前庭" loading="lazy"><img src="region_kamiyama3.jpg" alt="写真：川と橋のある山あいの町並み" loading="lazy"></div>
+        <div class="cats">
+          <section class="cat c-leaf">
+            <h4><span class="cat-n">1</span>自然・環境</h4>
+            <p>豊かな森林資源と、国に認められた景勝地、そして圧倒的なシェアを誇る特産品があります。</p><ul><li><strong>すだち生産量日本一:</strong> 神山町は徳島県特産の<mark>柑橘「すだち」の日本一の生産地</mark>です。町内の至る所にすだち畑が広がり、景観の一部となっています。</li><li><strong>雨乞の滝（あまごいのたき）:</strong> <mark>「日本の滝百選」</mark>に選定されている落差約45メートルの滝です。雄雌二つの滝からなり、自然豊かな観光スポットとして整備されています。</li><li><strong>森林資源:</strong> 町の総面積の約83%を山林が占めており、杉などの林業資源が豊富です。この木材を活用したプロジェクト（「しずくプロジェクト」など）も行われています。</li></ul>
+          </section>
+          <section class="cat c-sky">
+            <h4><span class="cat-n">2</span>生活・利便性</h4>
+            <p>山間部でありながら、都市部を凌駕する通信環境と、<mark>デザイン性の高い公営住宅</mark>が整備されています。</p><ul><li><strong>全域光ファイバー網:</strong> 2005年という早い段階で、<mark>町内全域に光ファイバー網</mark>を整備しました。これにより、山間部の古民家でも都心以上の高速通信が可能となり、後のIT企業誘致の決定的な基盤となりました。</li><li><strong>集合住宅「大埜地（おのじ）住宅」:</strong> 町営の集合住宅プロジェクトです。<mark>若者や子育て世帯の定住を目的に建設</mark>され、<mark>鮎喰川（あくいがわ）沿いの景観と調和した木造建築群は、2021年度の「グッドデザイン賞（金賞）」</mark>を受賞しています。</li><li><strong>医療体制:</strong> 公立の「神山町立病院」があります。救急告示病院として指定されており、内科、外科、整形外科などを備え、地域医療の中核を担っています。</li></ul>
+          </section>
+          <section class="cat c-plum">
+            <h4><span class="cat-n">3</span>人間関係・コミュニティ</h4>
+            <p>長年続くアーティスト滞在プログラムと、戦略的な移住者受け入れの仕組みが<mark>コミュニティの質</mark>を高めています。</p><ul><li><strong>神山アーティスト・イン・レジデンス (KAIR):</strong> 1999年から続いている国際的なアートプロジェクトです。毎年、国内外からアーティストを招聘し、<mark>住民と交流しながら作品制作</mark>を行います。この20年以上の歴史が、町に<mark>「外の人を受け入れる文化」</mark>を根付かせました。</li><li><strong>NPO法人グリーンバレー:</strong> 移住支援の中核を担う認定NPO法人です。<mark>単に人口を増やすのではなく</mark>、<mark>「将来の町に必要な人材（パン屋、デザイナーなど）」を指名して誘致する「ワーク・イン・レジデンス（逆指名）」</mark>という独自の手法を実践し、多くのメディアや研究対象として取り上げられています。</li></ul>
+          </section>
+          <section class="cat c-persimmon">
+            <h4><span class="cat-n">4</span>仕事・経済</h4>
+            <p><mark>IT企業の拠点と、農業と食をつなぐ新しい経済循環</mark>が生まれています。</p><ul><li><strong>サテライトオフィスの集積:</strong> 名刺管理サービスの「Sansan株式会社」や映像配信関連の「株式会社プラットイーズ」など、東京や大阪のIT・ベンチャー企業が古民家を改装したサテライトオフィスを開設しています。総務省の「ふるさとテレワーク」などのモデル地域としても知られます。</li><li><strong>フードハブ・プロジェクト:</strong> 「地産地食」を推進する株式会社（地域商社）が設立され、食堂「かま屋」やパン屋「かまパン＆ストア」を運営しています。農業従事者の育成と、農作物の適正価格での買取・加工販売を行い、地域内経済循環を生み出しています。</li></ul>
+          </section>
+          <section class="cat c-sun">
+            <h4><span class="cat-n">5</span>子育て環境・教育</h4>
+            <p>教育界に衝撃を与えた新しい学校の設立と、手厚い経済的支援があります。</p><ul><li><strong>神山まるごと高専:</strong> 2023年4月に開校した私立高等専門学校です。<mark>「テクノロジー×デザイン×起業家精神」を学ぶ学校</mark>として新設されました。スカラーシップ制度により、実質的に<mark>「学費無償」（寄付金を原資とした基金による給付型奨学金）</mark>を実現している点が大きな特徴です。</li><li><strong>給食費・医療費の無償化:</strong> 神山町立の小・中学校の学校給食費を全額補助（実質無料）しています。また、18歳到達後の最初の3月31日までの子どもを対象に、医療費（保険診療分）を全額助成しています。</li><li><strong>保育環境:</strong> 町内には認可保育所（神山町へき地保育所含む）があり、待機児童は発生していません。</li></ul>
+          </section>
+        </div>
+        <div class="town-links"><a class="btn" href="https://www.town.kamiyama.lg.jp/" target="_blank" rel="noopener">神山町の公式HP</a></div>
+      </article>
+
+      <div class="back">
+        <a class="btn btn--line" href="index.html">トップページへ戻る</a>
+        <a class="btn" href="contact.html">お問合せ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot" lang="ja">
+  <div class="rainbow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <p class="foot-brand"><small>家族と造るライフスタイル</small>mirai cycle</p>
+      <div>
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="index.html">ホームページ</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="contact.html">お問合せ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Recent Posts</h2>
+        <ul>
+          <li><a href="https://miraicycle.com/%e3%82%b0%e3%83%ac%e3%83%bc%e3%81%aa%e5%ad%90%e3%81%ae%e5%b0%86%e6%9d%a5%e3%82%92%e6%83%b3%e3%81%86/" target="_blank" rel="noopener">グレーな子の将来を想う</a></li>
+          <li><a href="https://miraicycle.com/%e5%ad%90%e3%81%a9%e3%82%82%e3%81%9f%e3%81%a1%e3%81%ae%e3%80%8c%e7%94%9f%e3%81%8d%e3%82%8b%e5%8a%9b%e3%80%8d%e3%81%a8%e3%80%8c%e5%ad%a6%e5%8a%9b%e3%80%8d%e3%81%af%e9%a3%9f%e5%8d%93%e3%81%8b%e3%82%89/" target="_blank" rel="noopener">子どもたちの「生きる力」と「学力」は食卓から始まる！？</a></li>
+          <li><a href="https://miraicycle.com/%e3%80%8e%e5%9c%b0%e6%96%b9%e3%81%ae%e6%80%aa%e7%89%a9%e3%80%8f%e3%82%92%e7%94%9f%e3%81%bf%e5%87%ba%e3%81%99%ef%bc%81%ef%bc%81/" target="_blank" rel="noopener">『地方の怪物』を生み出す！！</a></li>
+          <li><a href="https://miraicycle.com/%e5%9c%b0%e6%96%b9%e5%89%b5%e7%94%9f%e3%81%a3%e3%81%a6%e3%80%81%e5%ae%9f%e3%81%af%e3%80%8c%e8%bb%8a%e3%80%8d%e3%81%8b%e3%82%89%e5%a7%8b%e3%82%81%e3%82%89%e3%82%8c%e3%82%8b%ef%bc%9f/" target="_blank" rel="noopener">地方創生って、実は「車」から始められる？</a></li>
+          <li><a href="https://miraicycle.com/ai%e3%81%8c%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e4%bb%95%e4%ba%8b%e3%82%92%e3%81%99%e3%82%8b%e6%9c%aa%e6%9d%a5%e3%80%82%e5%90%91%e3%81%8b%e3%81%86%e3%81%b9%e3%81%8d%e3%81%af%e3%80%8c%e5%9c%b0%e6%96%b9/" target="_blank" rel="noopener">AIがすべての仕事をする未来。向かうべきは「地方」！</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">Copyright © 家族とともに造るライフスタイル支援 mirai cycle All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>try{document.documentElement.lang="ja"}catch(e){}</script>
+</body>
+</html>
