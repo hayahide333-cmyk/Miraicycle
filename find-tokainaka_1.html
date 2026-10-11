@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>魅力ある「トカイナカ」の探し方｜わが家にあう地方を見つける6つのポイントとプロンプト例 - 家族とともに造るライフスタイル支援 mirai cycle</title>
+<meta name="description" content="都会に通えて自然も近い「トカイナカ」。自分にあう地域を探す6つのポイントと、生成AIにそのまま使えるプロンプト例をご紹介します。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700;900&display=swap">
+<style>
+/* Layout: 写真がゆっくり動いて切り替わるヒーロー → 章ごとに色を持たせた紙面(空色・陽だまり・若葉)と写真 → 循環の章だけ深緑の面で受ける */
+:root{
+  --bg:#F5F8F2; --surface:#FFFFFF; --ink:#12261C; --ink-soft:#45574C; --line:#D3DCCE;
+  --pine:#0F3B2C; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2C5A47;
+  --sprout:#C6E24A; --on-sprout:#12260A; --marker:#FFE566; --on-c:#FFFFFF;
+  --leaf:#2A7A2E; --sky:#1870AB; --sun:#9A6800; --persimmon:#C24814; --plum:#B93A6C;
+  --leaf-soft:#E1F2DA; --sky-soft:#DFF0FA; --sun-soft:#FFF2C9; --persimmon-soft:#FDE5D8; --plum-soft:#FADEE9;
+  --btn-bg:#0F3B2C; --btn-fg:#F1F7EA;
+  /* 絵の上・深緑の面の上で使う固定色 */
+  --scrim-1:rgba(5,38,28,.9); --scrim-2:rgba(5,38,28,.55); --hero-n:#D4F06A; --hero-u:#9BDCFF;
+  --photo-mat:#FFFFFF; --p1:#C6E24A; --p2:#FFD34D; --p3:#FF9A62; --p4:#F58BB5; --p5:#7CCBF2;
+  --f-display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+  --f-latin:"Bricolage Grotesque","Zen Kaku Gothic New",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1812; --surface:#13251C; --ink:#E8F0E3; --ink-soft:#A9BBAD; --line:#27402F;
+    --pine:#15382A; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2F5C49;
+    --sprout:#C6E24A; --on-sprout:#12260A; --marker:#6A5600; --on-c:#0B1812;
+    --leaf:#9AD36A; --sky:#74C4F2; --sun:#F5C544; --persimmon:#FF9A6B; --plum:#F291B8;
+    --leaf-soft:#12301C; --sky-soft:#0F2A39; --sun-soft:#2E2708; --persimmon-soft:#371D12; --plum-soft:#351926;
+    --btn-bg:#C6E24A; --btn-fg:#12260A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1812; --surface:#13251C; --ink:#E8F0E3; --ink-soft:#A9BBAD; --line:#27402F;
+  --pine:#15382A; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2F5C49;
+  --sprout:#C6E24A; --on-sprout:#12260A; --marker:#6A5600; --on-c:#0B1812;
+  --leaf:#9AD36A; --sky:#74C4F2; --sun:#F5C544; --persimmon:#FF9A6B; --plum:#F291B8;
+  --leaf-soft:#12301C; --sky-soft:#0F2A39; --sun-soft:#2E2708; --persimmon-soft:#371D12; --plum-soft:#351926;
+  --btn-bg:#C6E24A; --btn-fg:#12260A; color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol,figure,table{margin:0}
+ul,ol{padding:0;list-style:none}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.45;text-wrap:balance;word-break:auto-phrase;font-feature-settings:"palt"}
+a{color:var(--sky);text-underline-offset:.25em}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--sprout);outline-offset:3px;border-radius:4px}
+::selection{background:var(--sprout);color:var(--on-sprout)}
+strong{font-weight:700}
+mark{background:linear-gradient(transparent 56%,var(--marker) 56%);color:inherit;font-weight:700;padding-inline:.1em}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.sec{padding-block:clamp(56px,9vw,112px);--c:var(--leaf);--c-soft:var(--leaf-soft)}
+.prose{max-width:39em;display:flex;flex-direction:column;gap:1.1em}
+.nb{display:inline-block;max-width:100%}
+.c-leaf{--c:var(--leaf);--c-soft:var(--leaf-soft)}
+.c-sky{--c:var(--sky);--c-soft:var(--sky-soft)}
+.c-sun{--c:var(--sun);--c-soft:var(--sun-soft)}
+.c-persimmon{--c:var(--persimmon);--c-soft:var(--persimmon-soft)}
+.c-plum{--c:var(--plum);--c-soft:var(--plum-soft)}
+.tint{background:var(--c-soft)}
+
+/* 写真 */
+.photo{display:block;width:100%;height:auto;border-radius:12px;background:var(--leaf-soft)}
+
+/* ヘッダー */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;min-width:0}
+.brand svg{flex:none;width:34px;height:34px}
+.brand-name{font-family:var(--f-latin);font-weight:700;font-size:1.2rem;line-height:1.1;letter-spacing:.01em;white-space:nowrap}
+.brand-tag{display:block;font-family:var(--f-body);font-weight:500;font-size:.66rem;letter-spacing:.08em;color:var(--ink-soft);margin-top:3px}
+.nav{display:flex;gap:clamp(12px,2.4vw,28px);align-items:center;font-size:.86rem;font-weight:700;white-space:nowrap}
+.nav a{color:var(--ink);text-decoration:none;padding-block:6px;border-bottom:2px solid transparent;transition:border-color .2s}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--leaf)}
+@media (max-width:520px){.brand-tag{display:none}.brand svg{width:28px;height:28px}.brand-name{font-size:1.05rem}}
+
+/* ボタン */
+.btn{display:inline-flex;align-items:center;gap:.6em;font-weight:700;font-size:.95rem;line-height:1.4;text-decoration:none;padding:.85em 1.5em;border-radius:999px;background:var(--btn-bg);color:var(--btn-fg);border:1.5px solid var(--btn-bg);transition:transform .2s,background .2s,color .2s}
+.btn::after{content:"→";font-family:var(--f-latin);transition:transform .2s}
+.btn:hover::after{transform:translateX(4px)}
+.btn--line{background:var(--surface);color:var(--ink);border-color:var(--ink)}
+.btn--sprout{background:var(--sprout);color:var(--on-sprout);border-color:var(--sprout)}
+.btn--ghost{background:rgba(5,38,28,.45);color:var(--on-pine);border-color:var(--on-pine)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.more{font-weight:700}
+.more::after{content:" →";font-family:var(--f-latin)}
+
+/* ヒーロー(スライド) */
+.hero{position:relative;isolation:isolate;background:var(--pine);color:var(--on-pine);overflow:hidden}
+.slides{position:absolute;inset:0;overflow:hidden}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;animation:kb1 24s ease-in-out infinite alternate;will-change:transform,opacity}
+.slide:nth-child(2){animation-name:kb2}
+.slide:nth-child(3){animation-name:kb3}
+.slide:nth-child(4){animation-name:kb1;animation-direction:alternate-reverse}
+.hero-gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .9s ease}
+.slides.gl .hero-gl{opacity:1}
+.slides.gl .slide{animation:none}
+.hero.is-paused .slide{animation-play-state:paused}
+.slide.is-on{opacity:1}
+@keyframes kb1{from{transform:scale(1.04)}to{transform:scale(1.17) translate(-2%,-1.5%)}}
+@keyframes kb2{from{transform:scale(1.17) translate(2%,0)}to{transform:scale(1.04) translate(0,1%)}}
+@keyframes kb3{from{transform:scale(1.05) translate(-1%,1%)}to{transform:scale(1.16) translate(1.5%,-1%)}}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,var(--scrim-1) 0%,var(--scrim-2) 36%,transparent 68%)}
+.hero .wrap{position:relative;z-index:1;display:flex;align-items:flex-end;min-height:clamp(500px,58vw,720px);padding-block:clamp(56px,8vw,96px) clamp(36px,4.5vw,56px)}
+.hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,18rem);align-items:end;gap:20px clamp(24px,4vw,56px);width:100%;min-width:0}
+.hero-main,.hero-aside{display:flex;flex-direction:column;gap:clamp(14px,2vw,22px);min-width:0}
+@media (max-width:1099px){.hero-copy{grid-template-columns:minmax(0,1fr)}}
+.hero-copy > *{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy > :nth-child(2){animation-delay:.12s}.hero-copy > :nth-child(3){animation-delay:.24s}.hero-copy > :nth-child(4){animation-delay:.36s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:var(--f-latin);font-weight:600;font-size:clamp(.8rem,1.4vw,.95rem);letter-spacing:.2em;text-transform:uppercase;color:var(--p2);display:flex;flex-wrap:wrap;gap:.2em 1.2em}
+.eyebrow span + span::before{content:"/";margin-right:1.2em;color:var(--on-pine-soft)}
+.hero h1{font-size:clamp(1.5rem,4.4vw,2.8rem);font-weight:900;line-height:1.5;letter-spacing:.02em;text-shadow:0 2px 6px rgba(5,38,28,.55),0 2px 26px rgba(5,38,28,.7)}
+.hero h1 span{display:inline-block;max-width:100%}
+.hero h1 em{font-style:normal}
+.hero h1 .n{color:var(--hero-n)}.hero h1 .u{color:var(--hero-u)}
+.hero-lead{max-width:30em;color:var(--on-pine);font-size:clamp(.95rem,1.5vw,1.05rem);text-shadow:0 1px 12px rgba(5,38,28,.6)}
+.hero-ctl{position:absolute;z-index:2;right:clamp(16px,4vw,40px);top:clamp(14px,2.4vw,24px);display:flex;align-items:center;gap:8px;background:rgba(5,38,28,.45);border-radius:999px;padding:4px 6px 4px 12px}
+.hero-pause{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--on-pine);background:rgba(5,38,28,.5);cursor:pointer;display:grid;place-items:center;padding:0}
+.hero-pause::before{content:"";width:10px;height:12px;border-inline:3.5px solid var(--on-pine)}
+.hero.is-paused .hero-pause::before{width:0;height:0;border-block:7px solid transparent;border-left:11px solid var(--on-pine);border-right:0;margin-left:3px}
+.dot{width:36px;height:22px;padding:0;border:0;background:none;cursor:pointer;display:grid;align-items:center}
+.dot::before{content:"";grid-area:1/1;height:4px;border-radius:2px;background:rgba(238,245,230,.45)}
+.dot i{grid-area:1/1;height:4px;border-radius:2px;background:var(--p2);width:0}
+.dot.is-on i{animation:fill 7s linear both}
+.hero.is-paused .dot.is-on i{animation:none;width:100%}
+@keyframes fill{from{width:0}to{width:100%}}
+.hero-pause:focus-visible,.dot:focus-visible{outline:3px solid var(--sprout);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.slide,.hero-copy > *{animation:none}}
+@media (max-width:760px){
+  .slides{position:relative;aspect-ratio:16/10}
+  .hero::after{display:none}
+  .hero .wrap{min-height:0;padding-block:28px 40px}
+  .hero-ctl{top:calc(62.5vw - 54px);right:12px}
+}
+
+/* 章インデックス */
+.index{background:var(--surface);border-bottom:1px solid var(--line)}
+.index ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));counter-reset:ch}
+.index li{counter-increment:ch;border-left:1px solid var(--line);--c:var(--sky)}
+.index li:nth-child(2){--c:var(--persimmon)}.index li:nth-child(3){--c:var(--leaf)}.index li:nth-child(4){--c:var(--plum)}.index li:nth-child(5){--c:var(--sun)}
+.index li:last-child{border-right:1px solid var(--line)}
+.index a{display:flex;flex-direction:column;gap:4px;height:100%;padding:18px 16px 20px;color:var(--ink);text-decoration:none;font-size:.86rem;font-weight:700;line-height:1.55;border-top:4px solid var(--c);transition:background .2s}
+.index a::before{content:counter(ch);font-family:var(--f-latin);font-weight:700;font-size:1.5rem;line-height:1;color:var(--c)}
+.index a:hover{background:var(--bg)}
+@media (max-width:860px){.index ol{grid-template-columns:minmax(0,1fr)}.index li{border-inline:0;border-top:1px solid var(--line)}.index li:first-child{border-top:0}.index li:last-child{border-right:0}.index a{flex-direction:row;align-items:baseline;gap:14px;padding:12px 0;border-top:0}.index a::before{font-size:1.15rem;min-width:1em}}
+
+/* 導入 */
+.about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
+.about-grid h2{font-size:clamp(1.45rem,3vw,2.15rem)}
+.about-grid h2 small{display:block;font-family:var(--f-body);font-size:.5em;font-weight:700;letter-spacing:.1em;color:var(--leaf);margin-top:1.1em;line-height:1.8}
+.pull{word-break:auto-phrase;font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.8}
+.for{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(20px,5vw,72px);align-items:start}
+.for h3{font-size:clamp(1.15rem,2vw,1.4rem)}
+.for ul{display:grid;gap:10px}
+.for li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding:14px 18px;border-radius:10px;background:var(--c-soft);line-height:1.75}
+.for li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c);margin-top:.5em}
+.for li span{color:var(--ink-soft);font-size:.92em}
+@media (max-width:760px){.about-grid,.for{grid-template-columns:minmax(0,1fr)}}
+
+/* 章見出し */
+.sec-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(14px,2.4vw,28px);align-items:start;margin-bottom:clamp(28px,4.5vw,48px)}
+.sec-num{font-family:var(--f-latin);font-weight:700;font-size:clamp(3rem,7vw,5.2rem);line-height:.86;color:var(--c)}
+.sec-head h2{font-size:clamp(1.4rem,3.1vw,2.2rem)}
+.sec-head .lede{margin-top:1em;max-width:39em;color:var(--ink-soft)}
+
+/* 1. ハードル */
+.hurdles{display:grid;gap:16px}
+.hurdle{background:var(--surface);border-radius:14px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(16px,4vw,48px);padding:clamp(20px,3.2vw,40px)}
+.hurdle-tag{display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.08em;line-height:1.4;background:var(--c);color:var(--on-c);padding:.35em 1em;border-radius:999px}
+.hurdle-wall{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.1vw,1.45rem);line-height:1.6;margin-top:.7em;word-break:auto-phrase}
+.hurdle-fix{display:flex;flex-direction:column;gap:18px;min-width:0}
+.hurdle-fix h3{font-family:var(--f-body);font-size:1.08rem;line-height:1.6;display:flex;gap:.7em;align-items:baseline}
+.hurdle-fix h3::before{content:"解決策";flex:none;font-size:.7rem;letter-spacing:.1em;border:1.5px solid var(--c);color:var(--c);padding:.2em .7em;border-radius:3px;position:relative;top:-.15em}
+.step h4{font-size:1rem;line-height:1.6}
+.step p{color:var(--ink-soft);margin-top:.35em;max-width:39em}
+.step + .step{padding-top:16px;border-top:1px dashed var(--line)}
+@media (max-width:760px){.hurdle{grid-template-columns:minmax(0,1fr)}}
+.cond{margin-top:16px;background:var(--surface);border-radius:14px;padding:clamp(20px,3.2vw,40px)}
+.cond-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:14px}
+.cond-head h3{font-size:clamp(1.15rem,2.1vw,1.45rem)}
+.key-badge{display:inline-block;font-weight:700;font-size:.8rem;line-height:1.4;background:var(--marker);color:var(--ink);padding:.3em .9em;border-radius:999px}
+.cond-table{min-width:640px;font-size:.92rem;line-height:1.7}
+.cond-table thead th{background:var(--c);color:var(--on-c);padding:10px 14px;letter-spacing:.06em;font-size:.82rem}
+.cond-table tbody tr{border-top:1px solid var(--line)}
+.cond-table tbody th{font-family:var(--f-body);font-size:.92rem;color:var(--ink);white-space:normal;padding:10px 14px;width:9.5em}
+.cond-table tbody td{min-width:0;padding:10px 14px}
+.cond-table tbody td:last-child{width:15em;color:var(--ink-soft);font-weight:700}
+.cond-table .grp th{background:var(--c-soft);font-weight:700;font-size:.98rem;width:auto}
+.cond-table .key.grp th{background:var(--marker)}
+.cond-table .key td:last-child{color:var(--leaf)}
+.cond-note{margin-top:12px;font-size:.86rem;color:var(--ink-soft)}
+
+/* 2. ライフスタイル */
+.life-list{display:grid;gap:clamp(20px,3vw,32px)}
+.life{background:var(--surface);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);min-width:0}
+.life:nth-child(even) .life-media{order:2}
+.life-media{position:relative;min-height:280px;background:var(--c-soft);min-width:0}
+.life-media > .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.life-media.mat{background:var(--photo-mat);display:grid;place-items:center;padding:14px}
+.life-media.mat img{display:block;width:100%;height:auto}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-content:center;padding:clamp(14px,2vw,22px)}
+.trio img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:8px}
+.trio figcaption{margin-top:8px;font-weight:700;font-size:.82rem;line-height:1.5;text-align:center;background:var(--c);color:var(--on-c);border-radius:6px;padding:.4em .5em}
+.trio figcaption small{display:block;font-weight:500;font-size:.72rem}
+.life-body{padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.life-kicker{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;letter-spacing:.12em;color:var(--c);line-height:1.4}
+.life-n{font-family:var(--f-latin);font-size:1.35rem;letter-spacing:0;line-height:1;width:1.9em;height:1.9em;display:grid;place-items:center;border-radius:50%;background:var(--c);color:var(--on-c)}
+.life h3{font-size:clamp(1.15rem,2vw,1.4rem)}
+.life p{color:var(--ink-soft)}
+.life .links{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px;color:var(--ink)}
+@media (max-width:820px){
+  .life{grid-template-columns:minmax(0,1fr)}
+  .life:nth-child(even) .life-media{order:0}
+  .life-media{min-height:0}
+  .life-media:not(.mat):not(.trio){aspect-ratio:16/9}
+}
+
+/* 3. 恵那市 */
+.badge{display:inline-block;font-weight:700;font-size:.82rem;letter-spacing:.06em;background:var(--c);color:var(--on-c);padding:.2em .9em;border-radius:999px;margin-bottom:1em}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,18px);margin-bottom:clamp(24px,4vw,40px)}
+.gallery img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--leaf-soft)}
+@media (max-width:640px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery img:first-child{grid-column:1/-1}}
+.ena-card{background:var(--surface);border-radius:14px;padding:clamp(8px,2vw,20px) clamp(16px,3vw,36px)}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.96rem;line-height:1.8}
+thead th{font-size:.78rem;letter-spacing:.12em;color:var(--ink-soft);text-align:left;padding:12px 16px 12px 0;font-weight:700}
+tbody th{text-align:left;white-space:nowrap;font-weight:700;padding:16px 24px 16px 0;vertical-align:top;font-family:var(--f-display);font-size:1.02rem;color:var(--c)}
+tbody td{padding:16px 0;vertical-align:top;min-width:14em}
+tbody tr{border-top:1px solid var(--line)}
+.private{margin-top:clamp(24px,4vw,40px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(12px,4vw,56px)}
+.private h3{font-size:1.12rem;line-height:1.7}
+.private p{color:var(--ink-soft)}
+.ena-links{margin-top:clamp(28px,4vw,40px)}
+@media (max-width:760px){.private{grid-template-columns:minmax(0,1fr)}}
+
+/* 4. 循環 */
+.cycle{background:var(--pine);color:var(--on-pine)}
+.cycle .sec-num{color:var(--sprout)}
+.cycle .sec-head .lede{color:var(--on-pine-soft)}
+.cycle .sec-head .lede strong{color:var(--on-pine)}
+.story{margin-bottom:clamp(28px,4.5vw,52px)}
+.story img{display:block;width:100%;height:auto;border-radius:14px;background:var(--photo-mat)}
+.cycle-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.ring{width:100%;max-width:500px;height:auto;margin-inline:auto;display:block}
+.ring text{font-family:var(--f-body);font-weight:700}
+.steps-label{font-family:var(--f-latin);font-weight:600;font-size:.78rem;letter-spacing:.2em;color:var(--p2);margin-bottom:10px}
+.steps{counter-reset:st}
+.steps li{counter-increment:st;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;padding:16px 0;border-top:1px solid var(--pine-line);font-weight:700;line-height:1.75;--n:var(--p1)}
+.steps li:nth-child(2){--n:var(--p2)}.steps li:nth-child(3){--n:var(--p3)}.steps li:nth-child(4){--n:var(--p4)}.steps li:nth-child(5){--n:var(--p5)}
+.steps li:last-child{border-bottom:1px solid var(--pine-line)}
+.steps li::before{content:counter(st);font-family:var(--f-latin);font-weight:700;font-size:1rem;width:2em;height:2em;display:grid;place-items:center;border-radius:50%;background:var(--n);color:var(--on-sprout);line-height:1}
+.loop{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--on-pine-soft);font-size:.86rem;font-weight:500}
+.loop svg{flex:none;width:20px;height:20px}
+.cycle-close{margin-top:clamp(36px,6vw,72px);padding-top:clamp(28px,4vw,48px);border-top:1px solid var(--pine-line);display:flex;flex-direction:column;gap:1.1em;max-width:44em}
+.cycle-close .big{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.3vw,1.6rem);line-height:1.85;color:var(--p2);word-break:auto-phrase}
+.cycle-close p{color:var(--on-pine-soft)}
+.cycle a{color:var(--sprout)}
+@media (max-width:860px){.cycle-grid{grid-template-columns:minmax(0,1fr)}.ring{max-width:400px}}
+
+/* 5. ビジネス */
+.biz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.biz > *{background:var(--c-soft);border-radius:14px;border-top:6px solid var(--c);padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.biz h3{font-size:1.15rem}
+.wip{align-self:flex-start;font-size:.76rem;font-weight:700;letter-spacing:.1em;border:1.5px dashed var(--c);color:var(--c);padding:.15em .8em;border-radius:999px}
+@media (max-width:640px){.biz{grid-template-columns:minmax(0,1fr)}}
+
+/* お問合せ */
+.cta-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,5vw,72px);align-items:start}
+.cta-grid h2{font-size:clamp(1.5rem,3.4vw,2.4rem)}
+.cta-grid .prose{margin-top:1.2em}
+.voices{display:flex;flex-direction:column;gap:12px}
+.voices li{background:var(--c-soft);border:2px solid var(--c);border-radius:18px 18px 18px 4px;padding:12px 20px;font-weight:700;line-height:1.7;align-self:flex-start;max-width:100%}
+.voices li:nth-child(2){align-self:flex-end;border-radius:18px 18px 4px 18px}
+.cta-foot{margin-top:clamp(24px,4vw,36px);display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+.cta-foot p{font-weight:700;max-width:26em;line-height:1.7}
+@media (max-width:760px){.cta-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* フッター */
+.rainbow{height:8px;background:linear-gradient(90deg,var(--p1) 0 20%,var(--p2) 0 40%,var(--p3) 0 60%,var(--p4) 0 80%,var(--p5) 0)}
+.site-foot{background:var(--pine);color:var(--on-pine)}
+.site-foot .wrap{padding-block:clamp(40px,6vw,72px) 28px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,2fr) minmax(0,5fr);gap:clamp(24px,4vw,56px)}
+.foot-brand{font-family:var(--f-latin);font-weight:700;font-size:1.6rem;line-height:1.2}
+.foot-brand small{display:block;font-family:var(--f-body);font-size:.78rem;font-weight:500;letter-spacing:.1em;color:var(--on-pine-soft);margin-bottom:6px}
+.site-foot h2{font-family:var(--f-latin);font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--p2);margin-bottom:10px}
+.site-foot li{line-height:1.6;padding-block:6px}
+.site-foot a{color:var(--on-pine);text-decoration:none;font-size:.92rem}
+.site-foot a:hover{text-decoration:underline}
+.copy{margin-top:clamp(28px,4vw,48px);padding-top:18px;border-top:1px solid var(--pine-line);font-size:.76rem;color:var(--on-pine-soft);line-height:1.7}
+@media (max-width:760px){.foot-grid{grid-template-columns:minmax(0,1fr)}}
+
+[id]{scroll-margin-top:84px}
+/* お問合せページ */
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.page-head{background:var(--pine);color:var(--on-pine)}
+.page-head .wrap{padding-block:clamp(36px,6vw,72px) clamp(32px,5vw,60px)}
+.crumb{display:flex;flex-wrap:wrap;gap:.6em;font-size:.82rem;color:var(--on-pine-soft);margin-bottom:1.2em}
+.crumb a{color:var(--on-pine-soft)}
+.crumb li + li::before{content:"›";margin-right:.6em}
+.page-head h1{font-size:clamp(1.8rem,4.6vw,3rem);font-weight:900;letter-spacing:.04em}
+.page-head .eyebrow{margin-bottom:.6em}
+.page-head p.lead{margin-top:1em;max-width:36em;color:var(--on-pine)}
+
+/* 記事ページ：自然・植物・暗さがもたらす心身への効果 */
+.page-head h1 .sub{display:block;font-family:var(--f-body);font-weight:700;font-size:clamp(1rem,2.1vw,1.3rem);letter-spacing:.06em;line-height:1.6;margin-top:.7em;color:var(--sprout)}
+.article{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,780px) minmax(0,1fr)}
+.article > *{grid-column:2;min-width:0}
+.intro p{font-size:clamp(1.02rem,1.7vw,1.14rem);line-height:2}
+.intro p + p{margin-top:1.1em}
+.toc2{margin-top:clamp(24px,4vw,36px);display:grid;gap:10px}
+.toc2 a{display:flex;align-items:baseline;gap:.9em;text-decoration:none;color:var(--ink);font-weight:700;line-height:1.6;background:var(--surface);border-radius:12px;padding:.9em 1.2em;border-left:5px solid var(--c);transition:transform .2s}
+.toc2 a:hover{transform:translateX(4px)}
+.toc2 .tn{font-family:var(--f-latin);color:var(--c);font-size:1.1em;flex:none}
+.part{margin-top:clamp(48px,8vw,88px);scroll-margin-top:90px}
+.part-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(12px,2vw,22px);align-items:start}
+.part-n{font-family:var(--f-latin);font-weight:700;font-size:clamp(2.6rem,6vw,4.2rem);line-height:.9;color:var(--c)}
+.part-head h2{font-size:clamp(1.35rem,3vw,1.95rem)}
+.part-lead{margin-top:clamp(14px,2.2vw,22px);line-height:2}
+.group{margin-top:clamp(22px,3.4vw,34px);background:var(--surface);border-radius:14px;padding:clamp(18px,2.8vw,30px);border-top:5px solid var(--c)}
+.group h3{display:flex;align-items:flex-start;gap:.55em;font-family:var(--f-body);font-weight:900;font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
+.group h3 .gn{flex:none;color:var(--c);font-family:var(--f-body)}
+.group ul{margin-top:14px;display:grid;gap:12px}
+.group li{background:var(--c-soft);border-radius:10px;padding:clamp(12px,1.8vw,18px) clamp(14px,2vw,20px);line-height:1.9;font-size:.96rem;color:var(--ink)}
+.group li strong{display:block;font-size:1.02rem;margin-bottom:.2em}
+.point{margin:clamp(22px,3.4vw,34px) 0 0;padding:clamp(16px,2.4vw,24px) clamp(18px,2.6vw,28px);border-radius:14px;background:var(--pine);color:var(--on-pine);line-height:1.95}
+.point strong{display:block;font-family:var(--f-latin),var(--f-body);letter-spacing:.08em;color:var(--sprout);margin-bottom:.3em}
+.illust{grid-column:1/-1!important;justify-self:center;width:100%;max-width:1024px;margin-top:clamp(24px,4vw,40px)}
+.illust img{display:block;width:100%;height:auto;border-radius:14px;background:var(--pine)}
+.summary{margin-top:clamp(48px,8vw,88px);background:var(--sun-soft);border-radius:16px;padding:clamp(22px,4vw,44px)}
+.summary h2{font-size:clamp(1.3rem,2.8vw,1.8rem)}
+.summary p{margin-top:1em;line-height:2}
+.back{margin-top:clamp(32px,5vw,56px);display:flex;flex-wrap:wrap;gap:12px}
+
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* 記事ページ：魅力ある「トカイナカ」の探し方 */
+.page-head h1{font-size:clamp(1.55rem,3.9vw,2.6rem)}
+.part-lead + .part-lead{margin-top:1em}
+.group h3 .gn{align-self:flex-start;margin-top:.28em;font-size:.72rem;font-weight:700;letter-spacing:.08em;line-height:1.4;white-space:nowrap;background:var(--c);color:var(--on-c);padding:.3em .9em;border-radius:999px}
+.group > p{margin-top:12px;line-height:1.95}
+.group li a{font-weight:700}
+.group li strong a{color:inherit}
+.group .calc{display:block;margin-top:.5em;padding:.6em .9em;border-radius:8px;background:var(--surface);font-weight:700;font-size:.92rem;line-height:1.8}
+
+/* 決める→探す→確かめる の流れ */
+.flow{margin-top:clamp(22px,3.4vw,34px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,32px)}
+.flow li{position:relative;background:var(--c-soft);border-top:5px solid var(--c);border-radius:14px;padding:14px 18px 18px;line-height:1.7}
+.flow li + li::before{content:"→";position:absolute;left:calc(-1 * clamp(22px,3vw,32px));width:clamp(22px,3vw,32px);top:50%;transform:translateY(-50%);text-align:center;font-family:var(--f-latin);font-weight:700;color:var(--ink-soft)}
+.flow small{display:block;font-size:.76rem;font-weight:700;letter-spacing:.08em;color:var(--c)}
+.flow b{display:block;font-family:var(--f-display);font-size:1.35rem;line-height:1.5}
+.flow span{display:block;font-size:.92rem;margin-top:.25em;color:var(--ink-soft)}
+@media (max-width:640px){
+  .flow{grid-template-columns:minmax(0,1fr)}
+  .flow li + li::before{content:"↓";left:0;width:100%;top:calc(-1 * clamp(22px,3vw,32px));height:clamp(22px,3vw,32px);line-height:clamp(22px,3vw,32px);transform:none}
+}
+
+/* 5つの視点の表 */
+.view{margin-top:14px;font-size:.94rem;line-height:1.8}
+.view thead th{padding:8px 16px 8px 0}
+.view tbody th{font-family:var(--f-body);font-size:.98rem;padding:14px 18px 14px 0}
+.view tbody td{min-width:0;padding:14px 18px 14px 0}
+.view tbody td:last-child{padding-right:0;color:var(--ink-soft)}
+@media (max-width:700px){
+  .view thead{display:none}
+  .view tbody tr{display:block;padding:14px 0}
+  .view tbody th,.view tbody td{display:block;padding:0}
+  .view tbody td::before{content:attr(data-l);display:block;margin-top:.7em;font-size:.74rem;font-weight:700;letter-spacing:.08em;color:var(--c)}
+}
+
+/* プロンプト */
+.how{margin-top:clamp(22px,3.4vw,34px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:how}
+.how li{counter-increment:how;background:var(--surface);border-radius:12px;padding:14px 16px 16px;line-height:1.75;font-size:.94rem}
+.how li::before{content:counter(how);display:grid;place-items:center;width:1.9em;height:1.9em;margin-bottom:8px;border-radius:50%;background:var(--c);color:var(--on-c);font-family:var(--f-latin);font-weight:700;line-height:1}
+.how strong{display:block}
+@media (max-width:700px){.how{grid-template-columns:minmax(0,1fr)}.how li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 14px}.how li::before{grid-row:1/3;margin:0}}
+
+.builder{margin-top:clamp(22px,3.4vw,34px);background:var(--c-soft);border-radius:14px;padding:clamp(18px,2.8vw,30px)}
+.builder h3{font-family:var(--f-body);font-weight:900;font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
+.builder > p{margin-top:.4em;font-size:.94rem;color:var(--ink-soft)}
+.fields{margin-top:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0;font-size:.84rem;font-weight:700;line-height:1.5}
+.field--wide{grid-column:1/-1}
+.field input,.field select{font:inherit;font-weight:500;font-size:1rem;line-height:1.5;color:var(--ink);background:var(--surface);border:1.5px solid var(--ink-soft);border-radius:8px;padding:.6em .8em;width:100%;min-width:0}
+.field input::placeholder{color:var(--ink-soft);opacity:.75}
+.field input:focus-visible,.field select:focus-visible{outline:3px solid var(--sprout);outline-offset:1px;border-color:var(--c)}
+.builder-foot{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;font-size:.86rem;color:var(--ink-soft)}
+@media (max-width:640px){.fields{grid-template-columns:minmax(0,1fr)}}
+
+.pcard{margin-top:clamp(22px,3.4vw,34px);background:var(--surface);border-radius:14px;border-top:5px solid var(--c);scroll-margin-top:90px}
+.pcard-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 16px;padding:clamp(18px,2.8vw,30px) clamp(18px,2.8vw,30px) 0}
+.pcard-head h3{flex:1 1 15em;display:flex;align-items:flex-start;gap:.55em;font-family:var(--f-body);font-weight:900;font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
+.pcard-head h3 .gn{flex:none;margin-top:.28em;font-size:.72rem;font-weight:700;letter-spacing:.08em;line-height:1.4;white-space:nowrap;background:var(--c);color:var(--on-c);padding:.3em .9em;border-radius:999px}
+.pcard-when{padding:.6em clamp(18px,2.8vw,30px) 0;color:var(--ink-soft);font-size:.94rem;line-height:1.85}
+.prompt{margin:clamp(14px,2vw,20px) clamp(10px,1.6vw,16px) clamp(10px,1.6vw,16px);padding:clamp(16px,2.4vw,26px);border-radius:10px;background:var(--pine);color:var(--on-pine);font-family:var(--f-body);font-size:.92rem;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}
+.prompt .ph{color:var(--p2);font-weight:700}
+.prompt .ph.is-set{color:var(--sprout)}
+.pcard-foot{padding:0 clamp(18px,2.8vw,30px) clamp(16px,2.4vw,24px);font-size:.86rem;color:var(--ink-soft);line-height:1.8}
+.copy-btn,.reset-btn{font:inherit;font-weight:700;font-size:.88rem;line-height:1.4;cursor:pointer;border-radius:999px;padding:.6em 1.2em;border:1.5px solid var(--btn-bg);background:var(--btn-bg);color:var(--btn-fg);transition:background .2s,color .2s,border-color .2s}
+.copy-btn{flex:none;min-width:9.5em}
+.copy-btn.is-done{background:var(--sprout);border-color:var(--sprout);color:var(--on-sprout)}
+.reset-btn{background:var(--surface);color:var(--ink);border-color:var(--ink)}
+.copy-btn:focus-visible,.reset-btn:focus-visible{outline:3px solid var(--sprout);outline-offset:3px}
+.legend{margin-top:clamp(14px,2vw,20px);font-size:.86rem;color:var(--ink-soft)}
+.legend i{font-style:normal;font-weight:700;background:var(--pine);border-radius:4px;padding:.15em .5em}
+.legend .l1{color:var(--p2)}.legend .l2{color:var(--sprout)}
+</style>
+</head>
+<body>
+<header class="site-head" lang="ja">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="家族とともに造るライフスタイル支援 mirai cycle">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" fill="none" stroke="var(--leaf)" stroke-width="3" stroke-dasharray="66 22" stroke-linecap="round" transform="rotate(-60 20 20)"/><path d="M20 27c0-6 2-10 7-12-1 6-3 9-7 12z" fill="var(--leaf)"/><path d="M20 27c0-5-2-8-6-9 0 5 2 8 6 9z" fill="var(--persimmon)"/></svg>
+      <span class="brand-name">mirai cycle<span class="brand-tag">家族とともに造るライフスタイル支援</span></span>
+    </a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="index.html">ホームページ</a>
+      <a href="blog.html">ブログ</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+  </div>
+</header>
+
+<main lang="ja">
+  <section class="page-head">
+    <div class="wrap">
+      <ol class="crumb"><li><a href="index.html">トップページ</a></li><li aria-current="page">魅力ある「トカイナカ」の探し方</li></ol>
+      <p class="eyebrow"><span>How to find</span></p>
+      <h1>魅力ある「トカイナカ」の探し方<span class="sub">わが家にあう地方を見つける6つのポイントと、生成AIに聞くプロンプト例</span></h1>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap article">
+      <div class="intro">
+        <p>「トカイナカ（都会＋田舎）」とは、都会へ通える距離にありながら、自然の豊かさと暮らしのゆとりがある地域のことです。仕事を大きく変えなくても、<strong>「週の数日はリモートワーク、残りは通勤」</strong>という働き方で、都市の刺激と地方の穏やかさを両立できます。</p>
+        <p>ただ、どこが「魅力的」かは家族によって違います。海の近くがいい家族もいれば、雪の少ない山あいがいい家族もいます。大切なのは、ランキングの上位を探すことではなく、<mark>「わが家の条件」にあう場所を見つけること</mark>です。</p>
+        <p>このページでは、自分にあう「トカイナカ」を探すポイントと、そのまま使える生成AIへのプロンプト（指示文）例をご紹介します。</p>
+        <nav class="toc2" aria-label="このページの内容"><a class="c-sky" href="#points"><span class="tn">1</span><span>自分にあう「トカイナカ」を探す6つのポイント</span></a><a class="c-plum" href="#prompts"><span class="tn">2</span><span>探すためのプロンプト例</span></a><a class="c-sun" href="#summary"><span class="tn">→</span><span>まとめ：軸を決めて、AIで広げ、自分の足で確かめる</span></a></nav>
+      </div>
+
+      <section class="part c-sky" id="points">
+        <div class="part-head"><span class="part-n" aria-hidden="true">1</span><h2><span class="vh">1. </span>自分にあう「トカイナカ」を探す6つのポイント</h2></div>
+        <p class="part-lead">探し方の順番は<strong>「決める → 探す → 確かめる」</strong>です。先に「わが家の軸」を決めておくと、たくさんの情報に振り回されずに済みます。</p>
+
+        <ol class="flow" aria-label="探し方の流れ">
+          <li class="c-sky"><small>ポイント 1・2・3</small><b>決める</b><span>通える範囲と、わが家の譲れない条件</span></li>
+          <li class="c-persimmon"><small>ポイント 4</small><b>探す</b><span>生成AIで候補を広く出し、3か所に絞る</span></li>
+          <li class="c-leaf"><small>ポイント 5・6</small><b>確かめる</b><span>公式の情報と、現地での体験</span></li>
+        </ol>
+
+        <div class="group c-sky" id="point1">
+          <h3><span class="gn">ポイント 1</span><span>「通える範囲」から先に決める</span></h3>
+          <ul>
+            <li><strong>起点は、勤務先の最寄駅</strong>トカイナカの土台は「通えること」です。まず勤務先（実家へ通いたい方は実家）の最寄駅を起点にして、片道の上限時間を決めます。</li>
+            <li><strong>出社する日数とセットで考える</strong>毎日通うなら片道60分でも長く感じますが、週に1〜2日の出社なら片道90分〜2時間も選択肢に入ります。「1週間の移動時間」に直すと比べやすくなります。<span class="calc">週2日 × 片道90分 ＝ 週6時間　／　週5日 × 片道45分 ＝ 週7時間30分</span></li>
+            <li><strong>ドア・ツー・ドアで見る</strong>駅までの移動、乗り換えの回数、始発・終電の時刻、座って通えるか。会社の通勤手当（特急・新幹線の扱い、上限額）も確かめておきましょう。</li>
+          </ul>
+        </div>
+
+        <div class="group c-sky" id="point2">
+          <h3><span class="gn">ポイント 2</span><span>条件を「変えられないもの」と「変えられるもの」に分ける</span></h3>
+          <ul>
+            <li><strong>変えられない条件は、妥協しない</strong>自然環境、気候、都市部へのアクセスは、住んでからは変えられません。「海の近くがいい」「雪は少ない方がいい」といった希望は、場所選びの段階でしっかり満たします。</li>
+            <li><strong>変えられる条件は、「伸びしろ」で見る</strong>コミュニティ、仕事の支援、子育て・教育は、自治体や住民の取り組みで変わっていきます。今の充実度だけでなく、「地域で動いている人がいるか」「自分も関われそうか」に目を向けます。</li>
+          </ul>
+          <p><a class="more" href="index.html#hurdles">「住みたい地方の条件」の一覧を見る</a></p>
+        </div>
+
+        <div class="group c-sky" id="point3">
+          <h3><span class="gn">ポイント 3</span><span>5つの視点から「譲れない条件」を3つ選ぶ</span></h3>
+          <p>すべてが満点の場所はありません。次の5つの視点で希望を書き出し、<mark>「絶対に譲れない条件」は3つまで</mark>に絞ります。残りは「あれば嬉しい」「気にしない」に分けましょう。家族それぞれが書き出して見比べるのがおすすめです。</p>
+          <table class="view">
+            <thead><tr><th scope="col">視点</th><th scope="col">わが家への問いかけ</th><th scope="col">確かめ方</th></tr></thead>
+            <tbody>
+              <tr class="c-leaf"><th scope="row">自然・環境</th><td data-l="わが家への問いかけ">海・山・川のどれが近いと嬉しい？ 雪や夏の暑さはどこまで平気？ 畑や庭はほしい？</td><td data-l="確かめ方">気象庁の過去の気象データ、ハザードマップ、季節を変えての訪問</td></tr>
+              <tr class="c-sky"><th scope="row">生活・利便性</th><td data-l="わが家への問いかけ">小児科、総合病院、スーパーまで何分なら安心？ 車は何台必要？</td><td data-l="確かめ方">医療機関の検索サイト、地図アプリでの所要時間、現地での移動</td></tr>
+              <tr class="c-plum"><th scope="row">人間関係・コミュニティ</th><td data-l="わが家への問いかけ">近所付き合いや地域の行事は、どのくらいの距離感が心地よい？</td><td data-l="確かめ方">移住相談窓口、先輩移住者の話、地域のイベントへの参加</td></tr>
+              <tr class="c-persimmon"><th scope="row">仕事・経済</th><td data-l="わが家への問いかけ">今の仕事を続ける？ 自宅で仕事はできる？ 住居費はどのくらいにしたい？</td><td data-l="確かめ方">自治体の移住支援制度、コワーキング施設、空き家バンク</td></tr>
+              <tr class="c-sun"><th scope="row">子育て・教育</th><td data-l="わが家への問いかけ">保育園・学校までの距離は？ どんな体験や学びを子どもに届けたい？</td><td data-l="確かめ方">自治体・学校の公式サイト、子育て支援の窓口、学校や園の見学</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="group c-persimmon" id="point4">
+          <h3><span class="gn">ポイント 4</span><span>生成AIで候補を広く出し、3か所に絞る</span></h3>
+          <ul>
+            <li><strong>知らなかった町に出会える</strong>自分で検索すると、どうしても知っている地名ばかりになります。生成AIに条件を伝えると、名前を聞いたことのない町も候補に挙がってきます。</li>
+            <li><strong>まず10か所、そこから3か所へ</strong>最初は広く10か所ほど挙げてもらい、比較表にしてもらってから、実際に足を運ぶ3か所に絞ります。</li>
+            <li><strong>根拠と出典をセットで出してもらう</strong>Web検索ができる生成AIを使い、「出典のURL」と「いつ時点の情報か」を必ず添えてもらいます。具体的な聞き方は<a href="#prompts">プロンプト例</a>をご覧ください。</li>
+          </ul>
+        </div>
+
+        <div class="group c-leaf" id="point5">
+          <h3><span class="gn">ポイント 5</span><span>数字と制度は、公式の情報で確かめる</span></h3>
+          <p>生成AIの答えは、あくまで「下書き」です。通勤時間、支援金の額、助成の対象年齢などは、古かったり誤っていたりすることがあります。支援制度は年度ごとに変わるため、次のような一次情報で必ず確かめます。</p>
+          <ul>
+            <li><strong>自治体の公式サイト</strong>移住・定住、子育て支援、医療費助成などのページ。迷ったら移住相談の窓口に問い合わせるのが確実です。</li>
+            <li><strong><a href="https://disaportal.gsi.go.jp/" target="_blank" rel="noopener">ハザードマップポータルサイト（国土交通省）</a></strong>洪水、土砂災害、津波などのリスクを、住みたい場所の地図に重ねて確認できます。</li>
+            <li><strong><a href="https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2300/initialize" target="_blank" rel="noopener">医療情報ネット「ナビイ」（厚生労働省）</a></strong>全国の病院、診療所、薬局を、診療科や診療時間などの条件で探せます。</li>
+            <li><strong><a href="https://www.iju-join.jp/" target="_blank" rel="noopener">ニッポン移住・交流ナビ JOIN</a></strong>自治体の支援制度、仕事、空き家、移住イベントの情報を全国から検索できます。</li>
+            <li><strong><a href="https://www.furusatokaiki.net/" target="_blank" rel="noopener">ふるさと回帰支援センター（東京・有楽町）</a></strong>各地の相談員に、まとめて移住相談ができます。移住先が決まっていなくても相談できます。</li>
+            <li><strong>乗換案内アプリ</strong>通勤時間は「平日の朝、実際に乗る時刻」で検索します。昼間の所要時間とは違うことがあります。</li>
+          </ul>
+        </div>
+
+        <div class="group c-leaf" id="point6">
+          <h3><span class="gn">ポイント 6</span><span>現地で「ふだんの暮らし」を試す</span></h3>
+          <ul>
+            <li><strong>観光ではなく、生活の下見をする</strong>スーパー、小児科、保育園や学校のまわり、公園、駅までの道。暮らし始めたら毎日使う場所を、実際に歩いたり車で走ったりしてみます。</li>
+            <li><strong>平日の朝に、勤務先まで通ってみる</strong>混み具合、乗り換えのしやすさ、帰りの終電。一度体験すると、続けられるかどうかがはっきりします。</li>
+            <li><strong>季節を変えて、2回は訪ねる</strong>気持ちのいい季節だけでなく、冬、梅雨、真夏など、その土地の厳しい季節も見ておきます。</li>
+            <li><strong>お試し住宅や移住体験プログラムを使う</strong>多くの自治体が、短期滞在や1日体験の機会を用意しています。先輩移住者に「住んでみて驚いたこと」を聞けると、暮らしのイメージがぐっと具体的になります。</li>
+          </ul>
+        </div>
+
+        <blockquote class="point"><p><strong>【それでも「ここだ」と思える場所が見つからないときは】</strong>mirai cycle は、「移住したい地方があれば良し。無ければ、住みたい地方を自ら創る」と考えています。自然や気候、都市への近さといった「変えられない条件」があう場所を選び、教育やコミュニティなどの「変えられる条件」は、地域の方々と一緒に育てていく。そんな選び方も、トカイナカ探しの一つの答えです。</p></blockquote>
+      </section>
+
+      <section class="part c-plum" id="prompts">
+        <div class="part-head"><span class="part-n" aria-hidden="true">2</span><h2><span class="vh">2. </span>探すためのプロンプト例</h2></div>
+        <p class="part-lead">ChatGPT、Gemini、Claude などの生成AIに、下の文章をコピーして貼り付けてください。<strong>【　】の部分をご自身の条件に書き換える</strong>だけで使えます。探し方の流れにあわせて、4つのプロンプトを用意しました。</p>
+
+        <ol class="how" aria-label="プロンプトの使い方">
+          <li><strong>【　】を書き換える</strong><span>例として入っている内容を、わが家の条件に置き換えます。</span></li>
+          <li><strong>Web検索を使えるAIで聞く</strong><span>新しい情報と、出典のURLを出してもらえます。</span></li>
+          <li><strong>条件を変えて聞き直す</strong><span>一度で決めず、何度かやり取りして絞り込みます。</span></li>
+        </ol>
+
+        <form class="builder" id="builder" hidden>
+          <h3>わが家の条件を入れると、下のプロンプトに反映されます</h3>
+          <p>入力した内容はこのページの中だけで使われ、どこにも送信されません。空欄のままでもコピーできます。</p>
+          <div class="fields">
+            <label class="field">勤務先の最寄駅<input type="text" data-k="station" placeholder="例：名古屋駅" autocomplete="off"></label>
+            <label class="field">家族構成<input type="text" data-k="family" placeholder="例：夫婦と子ども2人（5歳・2歳）" autocomplete="off"></label>
+            <label class="field">片道の通勤時間の上限
+              <select data-k="limit"><option value="">選んでください</option><option>60分</option><option>90分</option><option>120分</option></select>
+            </label>
+            <label class="field">出社する日数
+              <select data-k="days"><option value="">選んでください</option><option>週1日</option><option>週2〜3日</option><option>週4〜5日</option></select>
+            </label>
+            <label class="field field--wide">主な通勤手段
+              <select data-k="mode"><option value="">選んでください</option><option>主に電車</option><option>主に車</option><option>電車（特急・新幹線の利用も可）</option></select>
+            </label>
+            <label class="field field--wide">絶対に譲れない条件（3つまで）<input type="text" data-k="must" placeholder="例：①雪が少ない ②小児科が車で15分以内 ③自然体験の機会が多い" autocomplete="off"></label>
+            <label class="field field--wide">あれば嬉しい条件<input type="text" data-k="want" placeholder="例：畑付きの家、移住者が多い、海が近い" autocomplete="off"></label>
+          </div>
+          <div class="builder-foot"><button type="reset" class="reset-btn">入力を消す</button><span>会社名や住所、お子さんの名前などは入れず、最寄駅や年齢程度にとどめるのがおすすめです。</span></div>
+        </form>
+        <p class="legend"><i class="l1">【黄色の文字】</i> は書き換える部分、<i class="l2">緑色の文字</i> は上の入力が反映された部分です。</p>
+
+        <article class="pcard c-sky" id="prompt1">
+          <div class="pcard-head">
+            <h3><span class="gn">プロンプト 1</span><span>わが家の条件を整理する</span></h3>
+            <button type="button" class="copy-btn" data-copy="p1">コピーする</button>
+          </div>
+          <p class="pcard-when">「決める」の段階で使います。まだ条件がはっきりしていない方は、AIに質問してもらいながら整理するのが近道です。（ポイント 2・3）</p>
+<pre class="prompt" id="p1" tabindex="0">
+あなたは、子育て世代の地方移住を支援する移住コンシェルジュです。
+私は、都会の仕事を続けながら自然の近くで暮らせる「トカイナカ（都会＋田舎）」を探しています。
+まだ条件がはっきりしていないので、私に質問をしながら整理を手伝ってください。
+
+# 進め方
+1. 次の5つの視点について、1つずつ順番に質問してください（1回の質問は2つまで）。
+   ①自然・環境　②生活・利便性　③人間関係・コミュニティ　④仕事・経済　⑤子育て・教育
+2. すべて聞き終わったら、私の答えを次の3つに分けて表にまとめてください。
+   ・絶対に譲れない条件（3つまで）
+   ・あれば嬉しい条件
+   ・気にしない条件
+3. それぞれの条件が「住んでからは変えられないもの（自然、気候、都市への距離など）」か「地域や自分の取り組みで変えられるもの（コミュニティ、教育など）」かも、表に書き添えてください。
+4. 条件どうしが両立しにくい場合（例：駅の近くと広い庭）は、そのことを指摘して、どちらを優先するか聞いてください。
+
+# わが家のこと
+・家族構成：<span class="ph" data-f="family">【例：夫婦と子ども2人（5歳・2歳）】</span>
+・今の住まい：<span class="ph">【例：名古屋市内の賃貸マンション】</span>
+・勤務先の最寄駅：<span class="ph" data-f="station">【例：名古屋駅】</span>
+・働き方：出社は<span class="ph" data-f="days">【例：週2〜3日】</span>、残りはリモートワーク</pre>
+        </article>
+
+        <article class="pcard c-persimmon" id="prompt2">
+          <div class="pcard-head">
+            <h3><span class="gn">プロンプト 2</span><span>条件にあう候補地を10か所見つける</span></h3>
+            <button type="button" class="copy-btn" data-copy="p2">コピーする</button>
+          </div>
+          <p class="pcard-when">「探す」の段階で使う、中心になるプロンプトです。通勤の条件と譲れない条件を伝えて、候補を広く出してもらいます。（ポイント 1・4）</p>
+<pre class="prompt" id="p2" tabindex="0">
+# 役割
+あなたは、ライフスタイルを重視する子育て世代のための移住コンシェルジュです。
+
+# 目的
+都会の仕事を続けながら、自然の近くで子育てができる「トカイナカ（都会＋田舎）」の候補地を提案してください。
+
+# わが家の条件
+・家族構成：<span class="ph" data-f="family">【例：夫婦と子ども2人（5歳・2歳）】</span>
+・勤務先の最寄駅：<span class="ph" data-f="station">【例：名古屋駅】</span>
+・通勤手段：<span class="ph" data-f="mode">【例：主に電車】</span>
+・通勤時間：自宅から勤務先まで、片道おおむね<span class="ph" data-f="limit">【例：90分】</span>以内
+・働き方：出社は<span class="ph" data-f="days">【例：週2〜3日】</span>、残りはリモートワーク
+・絶対に譲れない条件：<span class="ph" data-f="must">【例：①雪が少ない ②小児科が車で15分以内 ③自然体験の機会が多い】</span>
+・あれば嬉しい条件：<span class="ph" data-f="want">【例：畑付きの家、移住者が多い、海が近い】</span>
+
+# 評価する5つの視点
+1. 自然・環境（海・山・川との距離、気候、災害のリスク）
+2. 生活・利便性（医療体制、買い物、公共交通、都市部へのアクセス）
+3. 人間関係・コミュニティ（移住者の受け入れ、相談窓口、地域の活動）
+4. 仕事・経済（テレワーク環境、住居費、移住や起業の支援制度）
+5. 子育て・教育（医療費の助成、保育園の入りやすさ、地域ならではの学び）
+※考え方は、次のページの「住みたい地方の条件」を参考にしてください。
+https://miraicycle.github.io/Miraicycle/index.html
+
+# 手順
+1. 勤務先の最寄駅から、上の通勤条件で通える市町村を洗い出す。
+2. 「絶対に譲れない条件」を満たさない地域を外す。
+3. 残った地域を5つの視点で評価し、わが家にあいそうな順に10か所を選ぶ。
+
+# 出力形式
+次の項目を表にまとめてください。
+・市町村名（都道府県）と最寄駅
+・勤務先の最寄駅までの所要時間と利用する路線
+・5つの視点それぞれの評価（◎・○・△）と、その理由を一言
+・この町ならではの魅力
+・気になる点、弱み
+最後に、わが家の条件に特にあう上位3か所と、その理由を書いてください。
+
+# 守ってほしいこと
+・Web検索を使い、自治体の公式サイトなど信頼できる情報を根拠にしてください。
+・数字や制度には、出典のURLと、いつ時点の情報かを添えてください。
+・確認できなかったことは推測で埋めず、「要確認」と書いてください。
+・良い点だけでなく、弱みも正直に書いてください。</pre>
+          <p class="pcard-foot">聞き直しの例：「片道120分まで広げたら、どこが加わりますか」「車で通う場合はどうなりますか」「上位3か所の弱みを、もう少し詳しく教えてください」</p>
+        </article>
+
+        <article class="pcard c-plum" id="prompt3">
+          <div class="pcard-head">
+            <h3><span class="gn">プロンプト 3</span><span>3か所を比べて、深く知る</span></h3>
+            <button type="button" class="copy-btn" data-copy="p3">コピーする</button>
+          </div>
+          <p class="pcard-when">候補を3か所に絞ったら、同じ物差しで比べます。「これから変えていける点」も聞いておくと、その地域の伸びしろが見えてきます。（ポイント 2・4・5）</p>
+<pre class="prompt" id="p3" tabindex="0">
+次の3つの地域を、子育て世代が「トカイナカ（都会＋田舎）」として暮らす視点で比較してください。
+
+# 比較する地域
+<span class="ph">【例：岐阜県恵那市、岐阜県中津川市 など、候補の3か所】</span>
+
+# 前提
+・家族構成：<span class="ph" data-f="family">【例：夫婦と子ども2人（5歳・2歳）】</span>
+・勤務先の最寄駅：<span class="ph" data-f="station">【例：名古屋駅】</span>
+・働き方：出社は<span class="ph" data-f="days">【例：週2〜3日】</span>、残りはリモートワーク
+
+# 知りたいこと
+1. 5つの視点（自然・環境／生活・利便性／人間関係・コミュニティ／仕事・経済／子育て・教育）での比較表
+2. 平日の朝に出社する場合の具体的な経路（出発時刻の目安、乗り換え、始発駅かどうか、帰りの終電）
+3. 住まいの目安（賃貸の家賃相場、戸建てや空き家の探し方）
+4. これから変えていける点（住民、移住者、NPO、企業、学校などが進めている、教育・コミュニティ・仕事づくりの取り組み）
+5. 住んでから後悔しやすい点と、事前にできる対策
+
+# 守ってほしいこと
+・Web検索を使い、出典のURLと、いつ時点の情報かを添えてください。
+・確認できなかったことは推測で埋めず、「要確認」と書いてください。
+・最後に、現地で自分の目で確かめるべきことを、地域ごとに5つずつ挙げてください。</pre>
+        </article>
+
+        <article class="pcard c-leaf" id="prompt4">
+          <div class="pcard-head">
+            <h3><span class="gn">プロンプト 4</span><span>現地での下見の計画を立てる</span></h3>
+            <button type="button" class="copy-btn" data-copy="p4">コピーする</button>
+          </div>
+          <p class="pcard-when">「確かめる」の段階で使います。観光ではなく、ふだんの暮らしを体験するための計画とチェックリストを作ってもらいます。（ポイント 6）</p>
+<pre class="prompt" id="p4" tabindex="0">
+<span class="ph">【例：岐阜県恵那市】</span>へ、移住の下見に<span class="ph">【例：1泊2日】</span>で行きます。
+観光ではなく「ふだんの暮らし」を確かめるための計画を作ってください。
+
+# 前提
+・家族構成：<span class="ph" data-f="family">【例：夫婦と子ども2人（5歳・2歳）】</span>
+・勤務先の最寄駅：<span class="ph" data-f="station">【例：名古屋駅】</span>
+・移動手段：<span class="ph">【例：行き帰りは電車、現地ではレンタカー】</span>
+・時期：<span class="ph">【例：1月、平日を含む日程】</span>
+・特に確かめたいこと：<span class="ph">【例：冬の寒さ、小児科と保育園、駅までの道】</span>
+
+# 作ってほしいもの
+1. 時間帯ごとの行動計画（平日の朝に、現地の最寄駅から勤務先の最寄駅まで、通勤の時間帯に実際に移動してみる体験を含める）
+2. 立ち寄る場所のリスト（スーパー、小児科・総合病院、保育園や小学校の周辺、公園、図書館、コワーキングスペース、移住相談窓口）
+3. 現地で確かめるチェックリスト（自然・環境／生活・利便性／人間関係・コミュニティ／仕事・経済／子育て・教育の視点ごとに3項目ずつ）
+4. 移住相談窓口や先輩移住者に聞くとよい質問を10個
+5. 利用できるお試し住宅や移住体験プログラムがあれば、その申込先と出典のURL
+
+確認できなかったことは推測で埋めず、「要確認」と書いてください。</pre>
+        </article>
+
+        <div class="group c-sun">
+          <h3><span>プロンプトを上手に使うコツ</span></h3>
+          <ul>
+            <li><strong>条件を1つだけ変えて、聞き直す</strong>通勤時間の上限や譲れない条件を1つ変えると、候補がどう変わるかが分かります。「どの条件が、わが家の選択肢を狭めているか」に気づけます。</li>
+            <li><strong>納得できない答えには、理由をたずねる</strong>「なぜこの町を選んだのですか」「根拠になったページを教えてください」と聞くと、答えの確かさを見極めやすくなります。</li>
+            <li><strong>最後は、公式の情報と現地で確かめる</strong>AIは候補を広げ、比べるのが得意です。決め手になる数字や制度、そして「暮らしの肌ざわり」は、ご自身で確かめてください。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="summary" id="summary">
+        <h2>まとめ：軸を決めて、AIで広げ、自分の足で確かめる</h2>
+        <p>魅力ある「トカイナカ」は、誰かが決めたランキングの中ではなく、「わが家の条件」の先にあります。</p>
+        <p>まず通える範囲と譲れない条件を決める。生成AIで思いがけない候補に出会う。そして公式の情報と現地での体験で確かめる。この順番で進めれば、家族みんなが納得できる場所に近づけます。</p>
+        <p>mirai cycle が注目している地域は、「魅力的なトカイナカの紹介」のページでご覧いただけます。探し方や移住について相談したい方は、お気軽にお問い合わせください。</p>
+      </section>
+      <div class="back">
+        <a class="btn btn--line" href="index.html">トップページへ戻る</a>
+        <a class="btn" href="regions.html">魅力的な「トカイナカ」の紹介</a>
+        <a class="btn btn--line" href="contact.html">お問合せ</a>
+      </div>
+      <p class="vh" id="copy-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot" lang="ja">
+  <div class="rainbow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <p class="foot-brand"><small>家族と造るライフスタイル</small>mirai cycle</p>
+      <div>
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="index.html">ホームページ</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="contact.html">お問合せ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Recent Posts</h2>
+        <ul>
+          <li><a href="post-gray-zone.html">グレーな子の将来を想う</a></li>
+          <li><a href="post-food-table.html">子どもたちの「生きる力」と「学力」は食卓から始まる！？</a></li>
+          <li><a href="post-local-monster.html">『地方の怪物』を生み出す！！</a></li>
+          <li><a href="post-car.html">地方創生って、実は「車」から始められる？</a></li>
+          <li><a href="post-ai-future.html">AIがすべての仕事をする未来。向かうべきは「地方」！</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">Copyright © 家族とともに造るライフスタイル支援 mirai cycle All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+try{document.documentElement.lang="ja"}catch(e){}
+(function(){
+  "use strict";
+  var form=document.getElementById("builder");
+  var status=document.getElementById("copy-status");
+
+  /* 入力欄 → プロンプトへ反映 */
+  function sync(el){
+    var key=el.getAttribute("data-k"), val=(el.value||"").replace(/\s+/g," ").trim();
+    var spots=document.querySelectorAll('.ph[data-f="'+key+'"]');
+    for(var i=0;i<spots.length;i++){
+      var s=spots[i];
+      if(!s.hasAttribute("data-d")) s.setAttribute("data-d",s.textContent);
+      s.textContent=val||s.getAttribute("data-d");
+      s.classList.toggle("is-set",!!val);
+    }
+  }
+  if(form){
+    form.hidden=false;
+    var inputs=form.querySelectorAll("[data-k]");
+    var syncAll=function(){for(var i=0;i<inputs.length;i++) sync(inputs[i]);};
+    form.addEventListener("input",function(e){if(e.target.hasAttribute("data-k")) sync(e.target);});
+    form.addEventListener("change",function(e){if(e.target.hasAttribute("data-k")) sync(e.target);});
+    form.addEventListener("reset",function(){setTimeout(syncAll,0);});
+    form.addEventListener("submit",function(e){e.preventDefault();});
+    syncAll();
+  }
+
+  /* コピー */
+  function fallbackCopy(text){
+    var ta=document.createElement("textarea");
+    ta.value=text; ta.setAttribute("readonly","");
+    ta.style.position="fixed"; ta.style.top="0"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    var ok=false; try{ok=document.execCommand("copy");}catch(e){}
+    document.body.removeChild(ta);
+    return ok;
+  }
+  function selectAll(node){
+    try{var r=document.createRange(); r.selectNodeContents(node); var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r);}catch(e){}
+  }
+  function flash(btn,label,done){
+    btn.textContent=label; btn.classList.toggle("is-done",!!done);
+    if(status) status.textContent=label;
+    clearTimeout(btn._t);
+    btn._t=setTimeout(function(){btn.textContent="コピーする"; btn.classList.remove("is-done");},2400);
+  }
+  var btns=document.querySelectorAll(".copy-btn");
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener("click",function(){
+      var btn=this, pre=document.getElementById(btn.getAttribute("data-copy"));
+      if(!pre) return;
+      var text=pre.textContent.replace(/^\s+|\s+$/g,"")+"\n";
+      var fail=function(){
+        if(fallbackCopy(text)) flash(btn,"コピーしました",true);
+        else{selectAll(pre); flash(btn,"選択しました",false);}
+      };
+      if(navigator.clipboard&&window.isSecureContext){
+        navigator.clipboard.writeText(text).then(function(){flash(btn,"コピーしました",true);},fail);
+      }else fail();
+    });
+  }
+})();
+</script>
+</body>
+</html>

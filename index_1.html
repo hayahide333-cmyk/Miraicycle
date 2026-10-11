@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>家族とともに造るライフスタイル支援 mirai cycle</title>
+<meta name="description" content="地方創生、教育、食育、住みたい環境など、生き方を丸ごと考えるサイトです。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700;900&display=swap">
+<style>
+/* 基本リセット */
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: 写真がゆっくり動いて切り替わるヒーロー → 章ごとに色を持たせた紙面(空色・陽だまり・若葉)と写真 → 循環の章だけ深緑の面で受ける */
+:root{
+  --bg:#F5F8F2; --surface:#FFFFFF; --ink:#12261C; --ink-soft:#45574C; --line:#D3DCCE;
+  --pine:#0F3B2C; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2C5A47;
+  --sprout:#C6E24A; --on-sprout:#12260A; --marker:#FFE566; --on-c:#FFFFFF;
+  --leaf:#2A7A2E; --sky:#1870AB; --sun:#9A6800; --persimmon:#C24814; --plum:#B93A6C;
+  --leaf-soft:#E1F2DA; --sky-soft:#DFF0FA; --sun-soft:#FFF2C9; --persimmon-soft:#FDE5D8; --plum-soft:#FADEE9;
+  --btn-bg:#0F3B2C; --btn-fg:#F1F7EA;
+  /* 絵の上・深緑の面の上で使う固定色 */
+  --scrim-1:rgba(5,38,28,.9); --scrim-2:rgba(5,38,28,.55); --hero-n:#D4F06A; --hero-u:#9BDCFF;
+  --photo-mat:#FFFFFF; --p1:#C6E24A; --p2:#FFD34D; --p3:#FF9A62; --p4:#F58BB5; --p5:#7CCBF2;
+  --f-display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+  --f-latin:"Bricolage Grotesque","Zen Kaku Gothic New",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1812; --surface:#13251C; --ink:#E8F0E3; --ink-soft:#A9BBAD; --line:#27402F;
+    --pine:#15382A; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2F5C49;
+    --sprout:#C6E24A; --on-sprout:#12260A; --marker:#6A5600; --on-c:#0B1812;
+    --leaf:#9AD36A; --sky:#74C4F2; --sun:#F5C544; --persimmon:#FF9A6B; --plum:#F291B8;
+    --leaf-soft:#12301C; --sky-soft:#0F2A39; --sun-soft:#2E2708; --persimmon-soft:#371D12; --plum-soft:#351926;
+    --btn-bg:#C6E24A; --btn-fg:#12260A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1812; --surface:#13251C; --ink:#E8F0E3; --ink-soft:#A9BBAD; --line:#27402F;
+  --pine:#15382A; --on-pine:#EEF5E6; --on-pine-soft:#B9CDBB; --pine-line:#2F5C49;
+  --sprout:#C6E24A; --on-sprout:#12260A; --marker:#6A5600; --on-c:#0B1812;
+  --leaf:#9AD36A; --sky:#74C4F2; --sun:#F5C544; --persimmon:#FF9A6B; --plum:#F291B8;
+  --leaf-soft:#12301C; --sky-soft:#0F2A39; --sun-soft:#2E2708; --persimmon-soft:#371D12; --plum-soft:#351926;
+  --btn-bg:#C6E24A; --btn-fg:#12260A; color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol,figure,table{margin:0}
+ul,ol{padding:0;list-style:none}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.45;text-wrap:balance;word-break:auto-phrase;font-feature-settings:"palt"}
+a{color:var(--sky);text-underline-offset:.25em}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--sprout);outline-offset:3px;border-radius:4px}
+::selection{background:var(--sprout);color:var(--on-sprout)}
+strong{font-weight:700}
+mark{background:linear-gradient(transparent 56%,var(--marker) 56%);color:inherit;font-weight:700;padding-inline:.1em}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.sec{padding-block:clamp(56px,9vw,112px);--c:var(--leaf);--c-soft:var(--leaf-soft)}
+.prose{max-width:39em;display:flex;flex-direction:column;gap:1.1em}
+.nb{display:inline-block;max-width:100%}
+.c-leaf{--c:var(--leaf);--c-soft:var(--leaf-soft)}
+.c-sky{--c:var(--sky);--c-soft:var(--sky-soft)}
+.c-sun{--c:var(--sun);--c-soft:var(--sun-soft)}
+.c-persimmon{--c:var(--persimmon);--c-soft:var(--persimmon-soft)}
+.c-plum{--c:var(--plum);--c-soft:var(--plum-soft)}
+.tint{background:var(--c-soft)}
+
+/* 写真 */
+.photo{display:block;width:100%;height:auto;border-radius:12px;background:var(--leaf-soft)}
+
+/* ヘッダー */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;min-width:0}
+.brand svg{flex:none;width:34px;height:34px}
+.brand-name{font-family:var(--f-latin);font-weight:700;font-size:1.2rem;line-height:1.1;letter-spacing:.01em;white-space:nowrap}
+.brand-tag{display:block;font-family:var(--f-body);font-weight:500;font-size:.66rem;letter-spacing:.08em;color:var(--ink-soft);margin-top:3px}
+.nav{display:flex;gap:clamp(12px,2.4vw,28px);align-items:center;font-size:.86rem;font-weight:700;white-space:nowrap}
+.nav a{color:var(--ink);text-decoration:none;padding-block:6px;border-bottom:2px solid transparent;transition:border-color .2s}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--leaf)}
+@media (max-width:520px){.brand-tag{display:none}.brand svg{width:28px;height:28px}.brand-name{font-size:1.05rem}}
+
+/* ボタン */
+.btn{display:inline-flex;align-items:center;gap:.6em;font-weight:700;font-size:.95rem;line-height:1.4;text-decoration:none;padding:.85em 1.5em;border-radius:999px;background:var(--btn-bg);color:var(--btn-fg);border:1.5px solid var(--btn-bg);transition:transform .2s,background .2s,color .2s}
+.btn::after{content:"→";font-family:var(--f-latin);transition:transform .2s}
+.btn:hover::after{transform:translateX(4px)}
+.btn--line{background:var(--surface);color:var(--ink);border-color:var(--ink)}
+.btn--sprout{background:var(--sprout);color:var(--on-sprout);border-color:var(--sprout)}
+.btn--ghost{background:rgba(5,38,28,.45);color:var(--on-pine);border-color:var(--on-pine)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.more{font-weight:700}
+.more::after{content:" →";font-family:var(--f-latin)}
+
+/* ヒーロー(スライド) */
+.hero{position:relative;isolation:isolate;background:var(--pine);color:var(--on-pine);overflow:hidden}
+.slides{position:absolute;inset:0;overflow:hidden}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;animation:kb1 24s ease-in-out infinite alternate;will-change:transform,opacity}
+.slide:nth-child(2){animation-name:kb2}
+.slide:nth-child(3){animation-name:kb3}
+.slide:nth-child(4){animation-name:kb1;animation-direction:alternate-reverse}
+.hero-gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .9s ease}
+.slides.gl .hero-gl{opacity:1}
+.slides.gl .slide{animation:none}
+.hero.is-paused .slide{animation-play-state:paused}
+.slide.is-on{opacity:1}
+@keyframes kb1{from{transform:scale(1.04)}to{transform:scale(1.17) translate(-2%,-1.5%)}}
+@keyframes kb2{from{transform:scale(1.17) translate(2%,0)}to{transform:scale(1.04) translate(0,1%)}}
+@keyframes kb3{from{transform:scale(1.05) translate(-1%,1%)}to{transform:scale(1.16) translate(1.5%,-1%)}}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,var(--scrim-1) 0%,var(--scrim-2) 36%,transparent 68%)}
+.hero .wrap{position:relative;z-index:1;display:flex;align-items:flex-end;min-height:clamp(500px,58vw,720px);padding-block:clamp(56px,8vw,96px) clamp(36px,4.5vw,56px)}
+.hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,18rem);align-items:end;gap:20px clamp(24px,4vw,56px);width:100%;min-width:0}
+.hero-main,.hero-aside{display:flex;flex-direction:column;gap:clamp(14px,2vw,22px);min-width:0}
+@media (max-width:1099px){.hero-copy{grid-template-columns:minmax(0,1fr)}}
+.hero-copy > *{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy > :nth-child(2){animation-delay:.12s}.hero-copy > :nth-child(3){animation-delay:.24s}.hero-copy > :nth-child(4){animation-delay:.36s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:var(--f-latin);font-weight:600;font-size:clamp(.8rem,1.4vw,.95rem);letter-spacing:.2em;text-transform:uppercase;color:var(--p2);display:flex;flex-wrap:wrap;gap:.2em 1.2em}
+.eyebrow span + span::before{content:"/";margin-right:1.2em;color:var(--on-pine-soft)}
+.hero h1{font-size:clamp(1.5rem,4.4vw,2.8rem);font-weight:900;line-height:1.5;letter-spacing:.02em;text-shadow:0 2px 6px rgba(5,38,28,.55),0 2px 26px rgba(5,38,28,.7)}
+.hero h1 span{display:inline-block;max-width:100%}
+.hero h1 em{font-style:normal}
+.hero h1 .n{color:var(--hero-n)}.hero h1 .u{color:var(--hero-u)}
+.hero-lead{max-width:30em;color:var(--on-pine);font-size:clamp(.95rem,1.5vw,1.05rem);text-shadow:0 1px 12px rgba(5,38,28,.6)}
+.hero-ctl{position:absolute;z-index:2;right:clamp(16px,4vw,40px);top:clamp(14px,2.4vw,24px);display:flex;align-items:center;gap:8px;background:rgba(5,38,28,.45);border-radius:999px;padding:4px 6px 4px 12px}
+.hero-pause{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--on-pine);background:rgba(5,38,28,.5);cursor:pointer;display:grid;place-items:center;padding:0}
+.hero-pause::before{content:"";width:10px;height:12px;border-inline:3.5px solid var(--on-pine)}
+.hero.is-paused .hero-pause::before{width:0;height:0;border-block:7px solid transparent;border-left:11px solid var(--on-pine);border-right:0;margin-left:3px}
+.dot{width:36px;height:22px;padding:0;border:0;background:none;cursor:pointer;display:grid;align-items:center}
+.dot::before{content:"";grid-area:1/1;height:4px;border-radius:2px;background:rgba(238,245,230,.45)}
+.dot i{grid-area:1/1;height:4px;border-radius:2px;background:var(--p2);width:0}
+.dot.is-on i{animation:fill 7s linear both}
+.hero.is-paused .dot.is-on i{animation:none;width:100%}
+@keyframes fill{from{width:0}to{width:100%}}
+.hero-pause:focus-visible,.dot:focus-visible{outline:3px solid var(--sprout);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.slide,.hero-copy > *{animation:none}}
+@media (max-width:760px){
+  .slides{position:relative;aspect-ratio:16/10}
+  .hero::after{display:none}
+  .hero .wrap{min-height:0;padding-block:28px 40px}
+  .hero-ctl{top:calc(62.5vw - 54px);right:12px}
+}
+
+/* 章インデックス */
+.index{background:var(--surface);border-bottom:1px solid var(--line)}
+.index ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));counter-reset:ch}
+.index li{counter-increment:ch;border-left:1px solid var(--line);--c:var(--sky)}
+.index li:nth-child(2){--c:var(--persimmon)}.index li:nth-child(3){--c:var(--leaf)}.index li:nth-child(4){--c:var(--plum)}.index li:nth-child(5){--c:var(--sun)}
+.index li:last-child{border-right:1px solid var(--line)}
+.index a{display:flex;flex-direction:column;gap:4px;height:100%;padding:18px 16px 20px;color:var(--ink);text-decoration:none;font-size:.86rem;font-weight:700;line-height:1.55;border-top:4px solid var(--c);transition:background .2s}
+.index a::before{content:counter(ch);font-family:var(--f-latin);font-weight:700;font-size:1.5rem;line-height:1;color:var(--c)}
+.index a:hover{background:var(--bg)}
+@media (max-width:860px){.index ol{grid-template-columns:minmax(0,1fr)}.index li{border-inline:0;border-top:1px solid var(--line)}.index li:first-child{border-top:0}.index li:last-child{border-right:0}.index a{flex-direction:row;align-items:baseline;gap:14px;padding:12px 0;border-top:0}.index a::before{font-size:1.15rem;min-width:1em}}
+
+/* 導入 */
+.about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
+.about-grid h2{font-size:clamp(1.45rem,3vw,2.15rem)}
+.about-grid h2 small{display:block;font-family:var(--f-body);font-size:.5em;font-weight:700;letter-spacing:.1em;color:var(--leaf);margin-top:1.1em;line-height:1.8}
+.pull{word-break:auto-phrase;font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.8}
+.for{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(20px,5vw,72px);align-items:start}
+.for h3{font-size:clamp(1.15rem,2vw,1.4rem)}
+.for ul{display:grid;gap:10px}
+.for li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding:14px 18px;border-radius:10px;background:var(--c-soft);line-height:1.75}
+.for li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c);margin-top:.5em}
+.for li span{color:var(--ink-soft);font-size:.92em}
+@media (max-width:760px){.about-grid,.for{grid-template-columns:minmax(0,1fr)}}
+
+/* 章見出し */
+.sec-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(14px,2.4vw,28px);align-items:start;margin-bottom:clamp(28px,4.5vw,48px)}
+.sec-num{font-family:var(--f-latin);font-weight:700;font-size:clamp(3rem,7vw,5.2rem);line-height:.86;color:var(--c)}
+.sec-head h2{font-size:clamp(1.4rem,3.1vw,2.2rem)}
+.sec-head .lede{margin-top:1em;max-width:39em;color:var(--ink-soft)}
+
+/* 1. ハードル */
+.hurdles{display:grid;gap:16px}
+.hurdle{background:var(--surface);border-radius:14px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(16px,4vw,48px);padding:clamp(20px,3.2vw,40px)}
+.hurdle-tag{display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.08em;line-height:1.4;background:var(--c);color:var(--on-c);padding:.35em 1em;border-radius:999px}
+.hurdle-wall{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.1vw,1.45rem);line-height:1.6;margin-top:.7em;word-break:auto-phrase}
+.hurdle-fix{display:flex;flex-direction:column;gap:18px;min-width:0}
+.hurdle-fix h3{font-family:var(--f-body);font-size:1.08rem;line-height:1.6;display:flex;gap:.7em;align-items:baseline}
+.hurdle-fix h3::before{content:"解決策";flex:none;font-size:.7rem;letter-spacing:.1em;border:1.5px solid var(--c);color:var(--c);padding:.2em .7em;border-radius:3px;position:relative;top:-.15em}
+.step h4{font-size:1rem;line-height:1.6}
+.step p{color:var(--ink-soft);margin-top:.35em;max-width:39em}
+.step + .step{padding-top:16px;border-top:1px dashed var(--line)}
+@media (max-width:760px){.hurdle{grid-template-columns:minmax(0,1fr)}}
+.cond{margin-top:16px;background:var(--surface);border-radius:14px;padding:clamp(20px,3.2vw,40px)}
+.cond-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:14px}
+.cond-head h3{font-size:clamp(1.15rem,2.1vw,1.45rem)}
+.key-badge{display:inline-block;font-weight:700;font-size:.8rem;line-height:1.4;background:var(--marker);color:var(--ink);padding:.3em .9em;border-radius:999px}
+.cond-table{min-width:640px;font-size:.92rem;line-height:1.7}
+.cond-table thead th{background:var(--c);color:var(--on-c);padding:10px 14px;letter-spacing:.06em;font-size:.82rem}
+.cond-table tbody tr{border-top:1px solid var(--line)}
+.cond-table tbody th{font-family:var(--f-body);font-size:.92rem;color:var(--ink);white-space:normal;padding:10px 14px;width:9.5em}
+.cond-table tbody td{min-width:0;padding:10px 14px}
+.cond-table tbody td:last-child{width:15em;color:var(--ink-soft);font-weight:700}
+.cond-table .grp th{background:var(--c-soft);font-weight:700;font-size:.98rem;width:auto}
+.cond-table .key.grp th{background:var(--marker)}
+.cond-table .key td:last-child{color:var(--leaf)}
+.cond-note{margin-top:12px;font-size:.86rem;color:var(--ink-soft)}
+
+/* 2. ライフスタイル */
+.life-list{display:grid;gap:clamp(20px,3vw,32px)}
+.life{background:var(--surface);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);min-width:0}
+.life:nth-child(even) .life-media{order:2}
+.life-media{position:relative;min-height:280px;background:var(--c-soft);min-width:0}
+.life-media > .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.life-media.mat{background:var(--photo-mat);display:grid;place-items:center;padding:14px}
+.life-media.mat img{display:block;width:100%;height:auto}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-content:center;padding:clamp(14px,2vw,22px)}
+.trio img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:8px}
+.trio figcaption{margin-top:8px;font-weight:700;font-size:.82rem;line-height:1.5;text-align:center;background:var(--c);color:var(--on-c);border-radius:6px;padding:.4em .5em}
+.trio figcaption small{display:block;font-weight:500;font-size:.72rem}
+.life-body{padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.life-kicker{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;letter-spacing:.12em;color:var(--c);line-height:1.4}
+.life-n{font-family:var(--f-latin);font-size:1.35rem;letter-spacing:0;line-height:1;width:1.9em;height:1.9em;display:grid;place-items:center;border-radius:50%;background:var(--c);color:var(--on-c)}
+.life h3{font-size:clamp(1.15rem,2vw,1.4rem)}
+.life p{color:var(--ink-soft)}
+.life .links{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px;color:var(--ink)}
+@media (max-width:820px){
+  .life{grid-template-columns:minmax(0,1fr)}
+  .life:nth-child(even) .life-media{order:0}
+  .life-media{min-height:0}
+  .life-media:not(.mat):not(.trio){aspect-ratio:16/9}
+}
+
+/* 3. 恵那市 */
+.badge{display:inline-block;font-weight:700;font-size:.82rem;letter-spacing:.06em;background:var(--c);color:var(--on-c);padding:.2em .9em;border-radius:999px;margin-bottom:1em}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,18px);margin-bottom:clamp(24px,4vw,40px)}
+.gallery img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--leaf-soft)}
+@media (max-width:640px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery img:first-child{grid-column:1/-1}}
+.ena-card{background:var(--surface);border-radius:14px;padding:clamp(8px,2vw,20px) clamp(16px,3vw,36px)}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.96rem;line-height:1.8}
+thead th{font-size:.78rem;letter-spacing:.12em;color:var(--ink-soft);text-align:left;padding:12px 16px 12px 0;font-weight:700}
+tbody th{text-align:left;white-space:nowrap;font-weight:700;padding:16px 24px 16px 0;vertical-align:top;font-family:var(--f-display);font-size:1.02rem;color:var(--c)}
+tbody td{padding:16px 0;vertical-align:top;min-width:14em}
+tbody tr{border-top:1px solid var(--line)}
+.private{margin-top:clamp(24px,4vw,40px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(12px,4vw,56px)}
+.private h3{font-size:1.12rem;line-height:1.7}
+.private p{color:var(--ink-soft)}
+.ena-links{margin-top:clamp(28px,4vw,40px)}
+@media (max-width:760px){.private{grid-template-columns:minmax(0,1fr)}}
+
+/* 4. 循環 */
+.cycle{background:var(--pine);color:var(--on-pine)}
+.cycle .sec-num{color:var(--sprout)}
+.cycle .sec-head .lede{color:var(--on-pine-soft)}
+.cycle .sec-head .lede strong{color:var(--on-pine)}
+.story{margin-bottom:clamp(28px,4.5vw,52px)}
+.story img{display:block;width:100%;height:auto;border-radius:14px;background:var(--photo-mat)}
+.cycle-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.ring{width:100%;max-width:500px;height:auto;margin-inline:auto;display:block}
+.ring text{font-family:var(--f-body);font-weight:700}
+.steps-label{font-family:var(--f-latin);font-weight:600;font-size:.78rem;letter-spacing:.2em;color:var(--p2);margin-bottom:10px}
+.steps{counter-reset:st}
+.steps li{counter-increment:st;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;padding:16px 0;border-top:1px solid var(--pine-line);font-weight:700;line-height:1.75;--n:var(--p1)}
+.steps li:nth-child(2){--n:var(--p2)}.steps li:nth-child(3){--n:var(--p3)}.steps li:nth-child(4){--n:var(--p4)}.steps li:nth-child(5){--n:var(--p5)}
+.steps li:last-child{border-bottom:1px solid var(--pine-line)}
+.steps li::before{content:counter(st);font-family:var(--f-latin);font-weight:700;font-size:1rem;width:2em;height:2em;display:grid;place-items:center;border-radius:50%;background:var(--n);color:var(--on-sprout);line-height:1}
+.loop{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--on-pine-soft);font-size:.86rem;font-weight:500}
+.loop svg{flex:none;width:20px;height:20px}
+.cycle-close{margin-top:clamp(36px,6vw,72px);padding-top:clamp(28px,4vw,48px);border-top:1px solid var(--pine-line);display:flex;flex-direction:column;gap:1.1em;max-width:44em}
+.cycle-close .big{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.3vw,1.6rem);line-height:1.85;color:var(--p2);word-break:auto-phrase}
+.cycle-close p{color:var(--on-pine-soft)}
+.cycle a{color:var(--sprout)}
+@media (max-width:860px){.cycle-grid{grid-template-columns:minmax(0,1fr)}.ring{max-width:400px}}
+
+/* 5. ビジネス */
+.biz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.biz > *{background:var(--c-soft);border-radius:14px;border-top:6px solid var(--c);padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.biz h3{font-size:1.15rem}
+.wip{align-self:flex-start;font-size:.76rem;font-weight:700;letter-spacing:.1em;border:1.5px dashed var(--c);color:var(--c);padding:.15em .8em;border-radius:999px}
+@media (max-width:640px){.biz{grid-template-columns:minmax(0,1fr)}}
+
+/* お問合せ */
+.cta-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,5vw,72px);align-items:start}
+.cta-grid h2{font-size:clamp(1.5rem,3.4vw,2.4rem)}
+.cta-grid .prose{margin-top:1.2em}
+.voices{display:flex;flex-direction:column;gap:12px}
+.voices li{background:var(--c-soft);border:2px solid var(--c);border-radius:18px 18px 18px 4px;padding:12px 20px;font-weight:700;line-height:1.7;align-self:flex-start;max-width:100%}
+.voices li:nth-child(2){align-self:flex-end;border-radius:18px 18px 4px 18px}
+.cta-foot{margin-top:clamp(24px,4vw,36px);display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+.cta-foot p{font-weight:700;max-width:26em;line-height:1.7}
+@media (max-width:760px){.cta-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* フッター */
+.rainbow{height:8px;background:linear-gradient(90deg,var(--p1) 0 20%,var(--p2) 0 40%,var(--p3) 0 60%,var(--p4) 0 80%,var(--p5) 0)}
+.site-foot{background:var(--pine);color:var(--on-pine)}
+.site-foot .wrap{padding-block:clamp(40px,6vw,72px) 28px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,2fr) minmax(0,5fr);gap:clamp(24px,4vw,56px)}
+.foot-brand{font-family:var(--f-latin);font-weight:700;font-size:1.6rem;line-height:1.2}
+.foot-brand small{display:block;font-family:var(--f-body);font-size:.78rem;font-weight:500;letter-spacing:.1em;color:var(--on-pine-soft);margin-bottom:6px}
+.site-foot h2{font-family:var(--f-latin);font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--p2);margin-bottom:10px}
+.site-foot li{line-height:1.6;padding-block:6px}
+.site-foot a{color:var(--on-pine);text-decoration:none;font-size:.92rem}
+.site-foot a:hover{text-decoration:underline}
+.copy{margin-top:clamp(28px,4vw,48px);padding-top:18px;border-top:1px solid var(--pine-line);font-size:.76rem;color:var(--on-pine-soft);line-height:1.7}
+@media (max-width:760px){.foot-grid{grid-template-columns:minmax(0,1fr)}}
+
+[id]{scroll-margin-top:84px}
+</style>
+</head>
+<body>
+<header class="site-head" lang="ja">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="家族とともに造るライフスタイル支援 mirai cycle">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" fill="none" stroke="var(--leaf)" stroke-width="3" stroke-dasharray="66 22" stroke-linecap="round" transform="rotate(-60 20 20)"/><path d="M20 27c0-6 2-10 7-12-1 6-3 9-7 12z" fill="var(--leaf)"/><path d="M20 27c0-5-2-8-6-9 0 5 2 8 6 9z" fill="var(--persimmon)"/></svg>
+      <span class="brand-name">mirai cycle<span class="brand-tag">家族とともに造るライフスタイル支援</span></span>
+    </a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="index.html" aria-current="page">ホームページ</a>
+      <a href="blog.html">ブログ</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+  </div>
+</header>
+
+<main lang="ja">
+  <section class="hero">
+    <div class="slides">
+      <img class="slide is-on" src="hero_fuji.jpg" data-mask="mask_fuji.png" data-focus="0.5,0.42" data-flow="0.05" data-pan="0.01,-0.012" alt="写真：茶畑の向こうに港町と海、雪をかぶった富士山を望む風景">
+      <img class="slide" src="hero_oyako.jpg" data-mask="mask_oyako.png" data-focus="0.5,0.46" data-flow="0" data-pan="-0.012,0.006" alt="写真：畑で母親と小さな子どもが笑顔で野菜を収穫している">
+      <img class="slide" src="hero_tanada.jpg" data-mask="mask_tanada.png" data-focus="0.5,0.55" data-flow="0.045" data-pan="0.012,0.01" alt="写真：水を張った棚田に空と雲が映る風景">
+      <img class="slide" src="hero_sato.jpg" data-mask="mask_sato.png" data-focus="0.5,0.5" data-flow="0.05" data-pan="-0.01,-0.01" alt="写真：青空の下、木々と紅葉に囲まれた家が並ぶ道">
+      <canvas class="hero-gl" aria-hidden="true"></canvas>
+    </div>
+    <div class="hero-ctl">
+      <button class="dot is-on" type="button" aria-label="1枚目の写真を表示" aria-current="true"><i></i></button>
+      <button class="dot" type="button" aria-label="2枚目の写真を表示"><i></i></button>
+      <button class="dot" type="button" aria-label="3枚目の写真を表示"><i></i></button>
+      <button class="dot" type="button" aria-label="4枚目の写真を表示"><i></i></button>
+      <button class="hero-pause" id="heroPause" type="button" aria-label="写真の動きを一時停止" aria-pressed="false"></button>
+    </div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="hero-main">
+        <p class="eyebrow"><span>Nature Power In Life</span><span>Interesting Job In Life</span></p>
+        <h1><span>人生を豊かにしてくれる</span><span><em class="n">自然</em>と<em class="u">都市</em>の欲張りな</span><span>ライフスタイルイノベーション</span></h1>
+        </div>
+        <div class="hero-aside">
+        <p class="hero-lead">地方創生、教育、食育、住みたい環境など、生き方を丸ごと考えるサイトです。</p>
+        <div class="btn-row">
+          <a class="btn btn--sprout" href="#about">mirai cycle の考え方</a>
+          <a class="btn btn--ghost" href="contact.html">お問合せ</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="index" aria-label="このページの内容">
+    <div class="wrap">
+      <ol>
+        <li><a href="#hurdles">地方移住・地方生活にある「3つのハードル」と解決策</a></li>
+        <li><a href="#lifestyle">地方生活で手に入る「4つの新しいライフスタイル」</a></li>
+        <li><a href="#ena"><span><span class="nb">住みたい地方の</span><span class="nb">モデルケース：</span><span class="nb">岐阜県恵那市</span></span></a></li>
+        <li><a href="#cycle">「すべての社会課題を連鎖的に解決」する理由</a></li>
+        <li><a href="#business">地方を支えるビジネス</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <h2><span class="nb">子育て世代から始まる</span><span class="nb">地方活性化</span><small><span class="nb">「住みたい地方を創る」</span><span class="nb">新しいライフスタイルと課題解決</span></small></h2>
+        <div class="prose">
+          <p>現在、日本の地方では人口減少、地域経済の停滞、食料自給率の低下、教育環境の変化など、複雑な社会的課題が山積しています。</p>
+          <p class="pull"><mark>「豊かな日本を、次の世代にしっかりと引き継いでいきたい」</mark></p>
+          <p>私たちは、これらの課題を根本から解決する鍵は「子育て世代による地方活性化」にあると考えています。</p>
+          <p>「地方に移住しよう」と呼びかけるだけではありません。<strong>移住したい地方があれば良し。無ければ、住みたい地方を自ら創る。</strong>子育て世代のリアルなニーズに応え、人と地域がともに育つ「新しい街づくりと持続可能なライフスタイル」をご提案します。</p>
+        </div>
+      </div>
+
+      <div class="for">
+        <h3>地方活性化を目指す「mirai cycle」は<br>こんな方におすすめです</h3>
+        <ul>
+          <li class="c-leaf"><div><strong>自然豊かな環境で子育てをしたい方</strong><br><span>空気や水がきれいな場所で子どもを伸びやかに育てたい</span></div></li>
+          <li class="c-sun"><div><strong>子どもの「自分で考える力（地頭・メタ認知力）」を育みたい方</strong></div></li>
+          <li class="c-sky"><div><strong>都市と地方を両立するハイブリッドな働き方をしたい方</strong><br><span>ON/OFFのメリハリをつけたい</span></div></li>
+          <li class="c-persimmon"><div><strong>生活コストを抑え、将来への投資や心豊かな暮らしに回したい方</strong></div></li>
+          <li class="c-plum"><div><strong>愛する地元や故郷を元気にしたい、持続可能な地域創生に関わりたい方</strong></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec c-sky tint" id="hurdles">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">1</span>
+        <div>
+          <h2>地方移住・地方生活にある「3つのハードル」と解決策</h2>
+          <p class="lede">地方での暮らしに興味はあっても、一歩踏み出せない理由には共通する「3つの壁」があります。私たちはそのハードルを低くする具体的な解決策を提示します。</p>
+        </div>
+      </div>
+
+      <div class="hurdles">
+        <article class="hurdle c-sky">
+          <div>
+            <p class="hurdle-tag">ハードル 1｜仕事</p>
+            <p class="hurdle-wall">地方に納得のいく仕事がない</p>
+          </div>
+          <div class="hurdle-fix">
+            <h3>都市部とのハイブリッド勤務・企業の選択肢拡大</h3>
+            <div class="step">
+              <h4>① 通勤可能なエリアの開拓＆リモートワーク活用</h4>
+              <p>完全に職を変えるのではなく、<mark>週の数日リモートワーク＋通勤できる「トカイナカ（都会＋田舎）」を選ぶ</mark>ことで、都市の刺激と地方の穏やかさを両立できます。</p>
+            </div>
+            <div class="step">
+              <h4>② 企業側による「地方生活」の選択肢提示</h4>
+              <p>日本の雇用者の多くを占める企業に対し、<mark>社員のライフスタイルの選択肢として地方生活やテレワーク環境を紹介・推奨する働きかけ</mark>を行います。</p>
+            </div>
+            <div class="btn-row">
+              <a class="btn" href="regions.html">魅力的な「トカイナカ」の紹介</a>
+              <a class="btn btn--line" href="find-tokainaka.html">魅力ある「トカイナカ」の探し方</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="hurdle c-persimmon">
+          <div>
+            <p class="hurdle-tag">ハードル 2｜生活イメージ</p>
+            <p class="hurdle-wall">実際の生活イメージが湧かない</p>
+          </div>
+          <div class="hurdle-fix">
+            <h3>体験プログラムとリアルな情報発信</h3>
+            <div class="step">
+              <h4>① 短期滞在・1日体験プログラムの活用</h4>
+              <p>ネットの情報だけでなく、現地での移住体験やワークショップを通して「実際の暮らし」を体感します。多くの地方でプログラムを提供しています。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="hurdle c-leaf">
+          <div>
+            <p class="hurdle-tag">ハードル 3｜住みたい街</p>
+            <p class="hurdle-wall"><span class="nb">心から「住みたい」と</span><span class="nb">思える地方がない</span></p>
+          </div>
+          <div class="hurdle-fix">
+            <h3>ニーズに合わせた「選ばれる地方」の共創</h3>
+            <div class="step">
+              <h4>① 変えられない強み（自然・環境）を伝える</h4>
+            </div>
+            <div class="step">
+              <h4>② 変えられる環境（コミュニティ・仕事・子育て）を創る</h4>
+              <p>自治体の頑張りと移住者のニーズを融合させ、<mark>教育やコミュニティといった「暮らす価値」を自分たちの手でアップデート</mark>していきます。</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="cond">
+        <div class="cond-head"><h3>住みたい地方の条件</h3><span class="key-badge">3〜5 が「地方の魅力を高めるポイント」</span></div>
+        <div class="table-scroll">
+          <table class="cond-table">
+            <thead><tr><th scope="col">住みたい地方の条件</th><th scope="col">内容</th><th scope="col">条件の性質</th></tr></thead>
+            <tbody>
+              <tr class="grp"><th colspan="3" scope="colgroup">1. 自然・環境</th></tr>
+              <tr><th scope="row" rowspan="2">自然環境</th><td>海が近い、山が近い、川が近いなど、趣味や癒やしを求める場所か。</td><td>変えられない、ありのままの条件</td></tr>
+              <tr><td>畑や庭付きの物件で自給自足やガーデニングを楽しみたいか。</td><td>変えられない、ありのままの条件</td></tr>
+              <tr><th scope="row">気候</th><td>雪が少ない、温暖な気候が良い、夏は涼しい方が良いなど、適応できる暑さ・寒さの程度。</td><td>変えられない、ありのままの条件</td></tr>
+              <tr class="grp"><th colspan="3" scope="colgroup">2. 生活・利便性</th></tr>
+              <tr><th scope="row" rowspan="3">医療体制</th><td>総合病院や専門医が生活圏内にあるか、緊急時のアクセス。</td><td>ありのままの条件</td></tr>
+              <tr><td>公共交通機関（バス、電車）の整備状況や利用頻度。</td><td>人が増えれば、変わる条件</td></tr>
+              <tr><td>都市部や実家へのアクセス（新幹線、高速道路のインターチェンジからの距離など）。</td><td>ほぼ、ありのままの条件</td></tr>
+              <tr><th scope="row">住居</th><td>賃貸か購入か、一軒家か集合住宅か。古民家を希望するか、新築・築浅が良いか。</td><td>自分が楽しむ条件</td></tr>
+              <tr class="grp key"><th colspan="3" scope="colgroup">3. 人間関係・コミュニティ</th></tr>
+              <tr class="key"><th scope="row" rowspan="3">地域との関わり</th><td>濃密な近所付き合いや地域の活動（祭り、草刈りなど）への参加を許容できるか。</td><td>地方が自ら変えていくべき条件</td></tr>
+              <tr class="key"><td>移住者（よそ者）に対する地元住民の寛容さ。</td><td>地方が自ら変えていくべき条件</td></tr>
+              <tr class="key"><td>移住者が多く集まっている地域か、地元のコミュニティが中心か。</td><td>地方が自ら変えていくべき条件</td></tr>
+              <tr class="grp key"><th colspan="3" scope="colgroup">4. 仕事・経済</th></tr>
+              <tr><th scope="row" rowspan="2"><span aria-hidden="true">—</span></th><td>移住先で仕事を見つける必要があるか（求人の種類、数）。</td><td>ありのままの条件</td></tr>
+              <tr class="key"><td>起業や農業を考えている場合、その支援制度があるか。</td><td>地方が自ら変えていくべき条件</td></tr>
+              <tr class="grp key"><th colspan="3" scope="colgroup">5. 子育て・教育</th></tr>
+              <tr class="key"><th scope="row">子育て環境</th><td>待機児童の状況、保育園・学校までの距離、子どもの遊び場や自然体験の機会。</td><td>地方が自ら変えていくべき条件</td></tr>
+              <tr class="key"><th scope="row">教育施設</th><td>希望する学校や習い事の環境</td><td>地方が自ら変えていくべき条件</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec c-persimmon" id="lifestyle">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">2</span>
+        <div><h2>地方生活で手に入る「4つの新しいライフスタイル」</h2></div>
+      </div>
+
+      <div class="life-list">
+        <article class="life c-sky">
+          <div class="life-media mat"><img src="work.jpg" alt="写真の組み合わせ：平日はオフィスで都会の仕事、電車での移動をはさんで、休日と平日のリモートは自然の中での仕事と休暇。オンとオフのメリハリ、自然の力で生産性の向上が期待できます。"></div>
+          <div class="life-body">
+            <p class="life-kicker"><span class="life-n">1</span>ワークスタイル</p>
+            <h3>創造性を高めるハイブリッドな働き方</h3>
+            <p>オフィスでの対面コミュニケーションと、自然豊かな環境でのリモートワークを使い分けることで、生産性と創造性は飛躍的に向上します。</p>
+            <p>緑豊かな環境で深呼吸しながら仕事に向き合う生活は、脳をリフレッシュさせ、AI時代に必要な「人間らしいアイデア」を生み出します。</p>
+            <p class="links"><a class="more" href="positive-effect.html">地方生活が人に与えるポジティブ効果</a></p>
+          </div>
+        </article>
+
+        <article class="life c-persimmon">
+          <div class="life-media"><img class="cover" src="food.jpg" alt="写真：畑で母親と小さな子どもが笑顔で野菜を収穫している"></div>
+          <div class="life-body">
+            <p class="life-kicker"><span class="life-n">2</span>食のスタイル</p>
+            <h3><span class="nb">「家族を想って作る食卓」と</span><span class="nb">新兼業農家</span></h3>
+            <p>本当の意味で<mark>安心・安全な食</mark>とは、<mark>大切な家族を想って作った農産物</mark>です。</p>
+            <p>テクノロジーを賢く活用して家庭菜園や小規模農業を行い、余剰分を地域にシェアする「新しい兼業農家」が増えることで、日本の食料問題の改善と、子どもたちの健やかな体・脳の発育に貢献します。</p>
+            <p class="links">
+              <a class="more" href="fish-vegetables.html">野菜や魚が子供の成長に必要な理由</a>
+              <a class="more" href="developmental.html">発達障害の子供が増加している理由</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="life c-sun">
+          <div class="life-media trio">
+            <figure><img src="study1.jpg" alt="写真：両親と3人の子どもが並んで座り、笑顔で話している"><figcaption>大人との会話での発見</figcaption></figure>
+            <figure><img src="study2.jpg" alt="写真：教室でタブレットを使って勉強する子どもたち"><figcaption>ITを使った勉強<small>※ITで都市との勉強格差は縮まります。</small></figcaption></figure>
+            <figure><img src="study3.jpg" alt="写真：森の中で家族が山菜を手に取り、観察している"><figcaption>現物での勉強</figcaption></figure>
+          </div>
+          <div class="life-body">
+            <p class="life-kicker"><span class="life-n">3</span>教育のスタイル</p>
+            <h3><span class="nb">課題解決力を育む</span><span class="nb">「客家（ハッカ）的教育」</span></h3>
+            <p>都市部の予備校や有名校に頼るだけが教育ではありません。</p>
+            <p><mark>地方特有の「大人と子どもの距離の近さ」や「地域の課題」に幼少期から触れる</mark>ことで、<mark>「なぜ勉強するのか」を自ら理解し、自走して問題を解決する力（高いメタ認知能力）</mark>が育ちます。ITを活用した高度なオンライン学習と地域での実践を組み合わせた、新しい教育環境を実現します。</p>
+            <p class="links"><a class="more" href="hakka.html">客家の教育</a></p>
+          </div>
+        </article>
+
+        <article class="life c-plum">
+          <div class="life-media"><img class="cover" src="home.jpg" alt="写真：山を背にした広い家々と、芝生の庭で過ごす人々"></div>
+          <div class="life-body">
+            <p class="life-kicker"><span class="life-n">4</span>コミュニティ＆住環境</p>
+            <h3>豊かな寛ぎと広い住まい</h3>
+            <p>ゆとりある住環境と温かい地域コミュニティ、そして高い出生率に裏打ちされた子育てしやすい環境が、家族全員の心にゆとりをもたらします。</p>
+            <p class="links"><a class="more" href="family-play.html">その他のライフスタイル</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec c-leaf tint" id="ena">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">3</span>
+        <div>
+          <p class="badge">事例紹介</p>
+          <h2><span class="nb">住みたい地方のモデルケース：</span><span class="nb">岐阜県恵那市</span></h2>
+          <p class="lede">「住みたい田舎ベストランキング」で連覇（2024年、2025年）を達成している岐阜県恵那市（えなし）は、まさに私たちが目指すモデルケースの一つです。</p>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <img src="ena_tanada.jpg" alt="写真：山あいに重なる棚田。水面に空と雲が映っている">
+        <img src="ena_yama.jpg" alt="写真：雪をかぶった山と、そのふもとに広がる街並み">
+        <img src="ena_kyo.jpg" alt="写真：湖にかかる赤い橋と、岸辺に咲く桜">
+      </div>
+
+      <div class="ena-card">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">評価項目</th><th scope="col">恵那市（岐阜県）の主な特徴と魅力</th></tr></thead>
+            <tbody>
+              <tr class="c-leaf"><th scope="row">自然・環境</th><td>「坂折棚田（日本の棚田百選）」や「農村景観日本一」など、美しく守られた景観が豊富。</td></tr>
+              <tr class="c-sky"><th scope="row">生活・利便性</th><td>名古屋駅まで電車で約1時間。市立恵那病院（二次救急）など医療体制も充実した「トカイナカ」。</td></tr>
+              <tr class="c-plum"><th scope="row">コミュニティ</th><td>移住定住の相談窓口（NPO連携）や伝統芸能を通じた、外部を受け入れる温かい土壌。</td></tr>
+              <tr class="c-persimmon"><th scope="row">仕事・経済</th><td>恵那テクノパークなどの工業団地があり、「清流の国ぎふ移住支援金」など起業・就業支援も手厚い。</td></tr>
+              <tr class="c-sun"><th scope="row">子育て・教育</th><td><strong>高校生等（18歳到達年度末）までの医療費無償化</strong>（所得制限なし）や独自の「恵那学」を実施。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="private">
+        <h3>地域を盛り上げる民間パワー<br>（例：恵那銀の森）</h3>
+        <p>地元農家との連携、マルシェの開催、高校生との協働プロジェクトなど、一企業が地域の魅力を高め、経済循環を生み出している素晴らしい事例も存在します。</p>
+      </div>
+
+      <div class="btn-row ena-links">
+        <a class="btn" href="https://www.city.ena.lg.jp/" target="_blank" rel="noopener">恵那市の公式HP</a>
+        <a class="btn btn--line" href="regions.html">他の地方をもっと見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec cycle" id="cycle">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">4</span>
+        <div>
+          <h2><span class="nb">地方の子育て世代が</span><span class="nb">「すべての社会課題を</span><span class="nb">連鎖的に解決」する理由</span></h2>
+          <p class="lede">子育て世代が地方で生き生きと暮らし、<strong>子どもたちが健やかに育つサイクル（mirai cycle）ができると</strong>、社会課題は連鎖的に解決に向かいます。</p>
+        </div>
+      </div>
+
+      <figure class="story">
+        <img src="cycle_story.jpg" width="1408" height="768" alt="イラスト「循環のストーリー」：1. 豊かな自然・安全な食・実践的教育により、子どもたちが元気に賢く育つ → 2. 新しい兼業農家の増加で、安全な食の流通と食料自給率が向上する → 3. 課題解決能力（メタ認知力）を身につけた優秀な人材が全国・世界へ羽ばたく → 4. 生活環境の良さと安心感から地方の出生率が向上し、人口減少にストップがかかる → 5. 成長した子どもたちが親となり、再び魅力的な地方で子育てをする「豊かさの循環」が生まれる">
+      </figure>
+
+      <div class="cycle-grid">
+        <svg class="ring" viewBox="-44 8 488 352" role="img" aria-label="5つの段階が1から5へ進み、再び1へ戻る循環の図">
+          <circle cx="200" cy="200" r="120" fill="none" stroke="var(--pine-line)" stroke-width="3"/>
+          <g fill="var(--on-pine-soft)">
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(270.5 102.9) rotate(36)"/>
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(314.1 237.1) rotate(108)"/>
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(200 320) rotate(180)"/>
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(85.9 237.1) rotate(252)"/>
+            <path d="M-7,-6 L7,0 L-7,6 Z" transform="translate(129.5 102.9) rotate(324)"/>
+          </g>
+          <circle cx="200" cy="80" r="22" fill="var(--p1)"/><circle cx="314.1" cy="162.9" r="22" fill="var(--p2)"/><circle cx="270.5" cy="297.1" r="22" fill="var(--p3)"/><circle cx="129.5" cy="297.1" r="22" fill="var(--p4)"/><circle cx="85.9" cy="162.9" r="22" fill="var(--p5)"/>
+          <g fill="var(--on-sprout)" font-size="17" text-anchor="middle" style="font-family:var(--f-latin)">
+            <text x="200" y="86">1</text><text x="314.1" y="168.9">2</text><text x="270.5" y="303.1">3</text><text x="129.5" y="303.1">4</text><text x="85.9" y="168.9">5</text>
+          </g>
+          <g fill="var(--on-pine)" font-size="16">
+            <text x="200" y="44" text-anchor="middle">子どもが元気に賢く育つ</text>
+            <text x="344" y="160" text-anchor="start">食料自給率</text>
+            <text x="344" y="181" text-anchor="start">が向上</text>
+            <text x="286" y="343" text-anchor="middle">人材が世界へ羽ばたく</text>
+            <text x="112" y="343" text-anchor="middle">出生率が向上</text>
+            <text x="56" y="160" text-anchor="end">豊かさの循環</text>
+            <text x="56" y="181" text-anchor="end">が生まれる</text>
+          </g>
+          <text x="200" y="196" text-anchor="middle" fill="var(--on-pine)" font-size="26" style="font-family:var(--f-latin)">mirai</text>
+          <text x="200" y="226" text-anchor="middle" fill="var(--p2)" font-size="26" style="font-family:var(--f-latin)">cycle</text>
+        </svg>
+
+        <div>
+          <p class="steps-label">循環のストーリー</p>
+          <ol class="steps">
+            <li><span>豊かな自然・安全な食・実践的教育により、子どもたちが元気に賢く育つ</span></li>
+            <li><span>新しい兼業農家の増加で、安全な食の流通と食料自給率が向上する</span></li>
+            <li><span>課題解決能力（メタ認知力）を身につけた優秀な人材が全国・世界へ羽ばたく</span></li>
+            <li><span>生活環境の良さと安心感から地方の出生率が向上し、人口減少にストップがかかる</span></li>
+            <li><span>成長した子どもたちが親となり、再び魅力的な地方で子育てをする「豊かさの循環」が生まれる</span></li>
+          </ol>
+          <p class="loop"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-2-4.5" fill="none" stroke="var(--sprout)" stroke-width="2" stroke-linecap="round"/><path d="M14.5 1.5v4.5H10" fill="none" stroke="var(--sprout)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>そして、ふたたび 1 へ。</p>
+        </div>
+      </div>
+
+      <div class="cycle-close">
+        <p>「地方での暮らし」は、単なる避難先でも一時的なトレンドでもありません。</p>
+        <p class="big">自分たちの生き方を選び、子どもの未来を切り拓き、結果として日本全体を元気にしていくだんぜん魅力的なイノベーションです。</p>
+        <p>具体的な仕組みやストーリーについては、<a href="social-cycle.html">こちらの解説ページ</a>で詳しくご紹介しています。ぜひ合わせてご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec c-sun" id="business">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">5</span>
+        <div>
+          <h2>地方を支えるビジネス</h2>
+          <p class="lede">地方は多くのビジネスによって支えられています。</p>
+        </div>
+      </div>
+      <div class="biz">
+        <div class="c-persimmon">
+          <h3>ビジネス案</h3>
+          <p><a class="more" href="business.html">ビジネス案はこちら</a></p>
+        </div>
+        <div class="c-sky">
+          <h3>地方創生を支えるスタートアップ等</h3>
+          <span class="wip">工事中</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec c-plum tint" id="contact">
+    <div class="wrap">
+      <div class="cta-grid">
+        <div>
+          <h2><span class="nb">あなたも</span><span class="nb">「新しい地方の未来」を</span><span class="nb">一緒に創りませんか？</span></h2>
+          <div class="prose">
+            <p>私たちが目指すのは、地方での豊かな生活を通して「自分・家族・そして日本全体」を良くしていく仕組みづくりです。</p>
+          </div>
+        </div>
+        <ul class="voices">
+          <li class="c-sky">「活動内容についてもっと詳しく知りたい」</li>
+          <li class="c-sun">「自分の地域でもこんな取り組みをしてみたい」</li>
+          <li class="c-leaf">「移住や子育て環境について相談したい」</li>
+        </ul>
+      </div>
+      <div class="cta-foot">
+        <p>少しでも興味を持っていただけましたら、ぜひお気軽にお問い合わせください！</p>
+        <a class="btn" href="contact.html">お問合せ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot" lang="ja">
+  <div class="rainbow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <p class="foot-brand"><small>家族と造るライフスタイル</small>mirai cycle</p>
+      <div>
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="index.html">ホームページ</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="contact.html">お問合せ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Recent Posts</h2>
+        <ul>
+          <li><a href="post-gray-zone.html">グレーな子の将来を想う</a></li>
+          <li><a href="post-food-table.html">子どもたちの「生きる力」と「学力」は食卓から始まる！？</a></li>
+          <li><a href="post-local-monster.html">『地方の怪物』を生み出す！！</a></li>
+          <li><a href="post-car.html">地方創生って、実は「車」から始められる？</a></li>
+          <li><a href="post-ai-future.html">AIがすべての仕事をする未来。向かうべきは「地方」！</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">Copyright © 家族とともに造るライフスタイル支援 mirai cycle All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+try{document.documentElement.lang="ja"}catch(e){}
+/* ヒーロー：写真そのものが動く(水面のゆらぎ・雲の流れ・木々のそよぎ)スライド。WebGL が使えない場合は写真の切り替えのみ。 */
+(function(){
+  var hero=document.querySelector('.hero');if(!hero)return;
+  var box=hero.querySelector('.slides'),slides=[].slice.call(box.querySelectorAll('.slide')),dots=[].slice.call(hero.querySelectorAll('.dot')),btn=document.getElementById('heroPause'),cv=box.querySelector('.hero-gl');
+  var D=7000,FADE=1600,N=slides.length,i=0,prev=-1,paused=false,visible=true,raf=0,last=0,clock=0,advanceAt=D,fadeStart=-1e9,born=[],gl=null,ready=false,shown=false,U={},tex=[],S=[];
+  var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  for(var k=0;k<N;k++)born[k]=0;
+  function nums(el,name){return (el.getAttribute(name)||'0').split(',').map(Number)}
+  function show(n){var p=i;i=(n+N)%N;if(i!==p){prev=p;fadeStart=clock;born[i]=clock}advanceAt=clock+D;
+    slides.forEach(function(s,k){s.classList.toggle('is-on',k===i)});
+    dots.forEach(function(d,k){d.classList.remove('is-on');if(k===i){void d.offsetWidth;d.classList.add('is-on');d.setAttribute('aria-current','true')}else d.removeAttribute('aria-current')})}
+  function kick(){if(!raf&&!paused&&visible&&!document.hidden){last=performance.now();raf=requestAnimationFrame(tick)}}
+  function tick(now){raf=0;var dt=Math.min(250,Math.max(0,now-last));last=now;clock+=dt;if(clock>=advanceAt)show(i+1);if(ready)draw();kick()}
+  function setPaused(p){paused=p;hero.classList.toggle('is-paused',p);btn.setAttribute('aria-pressed',String(p));btn.setAttribute('aria-label',p?'写真の動きを再生':'写真の動きを一時停止');if(!p){show(i);kick()}}
+  dots.forEach(function(d,k){d.addEventListener('click',function(){show(k);if(paused){fadeStart=-1e9;if(ready)draw()}kick()})});
+  btn.addEventListener('click',function(){setPaused(!paused)});
+  document.addEventListener('visibilitychange',kick);
+  if('IntersectionObserver' in window){new IntersectionObserver(function(e){visible=e[0].isIntersecting;kick()},{threshold:0}).observe(hero)}
+
+  var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  var FS=['#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
+  'uniform sampler2D uImg,uMask;uniform vec2 uRes,uFocus,uPan;uniform float uT,uIA,uZoom,uAlpha,uFlow;',
+  'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+  'float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}',
+  'void main(){',
+  ' vec2 s=gl_FragCoord.xy/uRes;s.y=1.-s.y;',
+  ' float ca=uRes.x/uRes.y;vec2 vis=(ca>uIA?vec2(1.,uIA/ca):vec2(ca/uIA,1.))/uZoom;',
+  ' vec2 c=clamp(uFocus+uPan,vis*.5,1.-vis*.5);vec2 uv=c+(s-.5)*vis;',
+  ' vec3 m=texture2D(uMask,uv).rgb;',
+  ' float n1=noise(vec2(uv.x*14.,uv.y*110.)+vec2(uT*.35,uT*1.1));',
+  ' float n2=noise(vec2(uv.x*42.,uv.y*250.)-vec2(uT*.5,uT*1.6));',
+  ' vec2 d=m.r*vec2((n1-.5)*.0042+(n2-.5)*.0014,(n1-.5)*.0018);',
+  ' float n3=noise(uv*7.+vec2(uT*.3,uT*.18)),n4=noise(uv*7.+vec2(-uT*.22,uT*.26)+9.7);',
+  ' d+=m.b*vec2((n3-.5)*.0036,(n4-.5)*.0022);',
+  ' float p1=fract(uT*.045),p2=fract(uT*.045+.5);vec2 fl=vec2(m.g*uFlow,0.);',
+  ' vec3 a=texture2D(uImg,uv+d-fl*(p1-.5)).rgb,b=texture2D(uImg,uv+d-fl*(p2-.5)).rgb;',
+  ' vec3 col=mix(a,b,abs(1.-2.*p1));',
+  ' col*=1.+m.b*.10*(noise(uv*11.+vec2(uT*.45,-uT*.3))-.5);',
+  ' col+=m.r*.08*smoothstep(.74,.96,n2);',
+  ' gl_FragColor=vec4(col,uAlpha);}'].join('\n');
+  function sh(t,src){var o=gl.createShader(t);gl.shaderSource(o,src);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(o));return o}
+  function mkTex(img){var t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,img);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return t}
+  function initGL(masks){
+    try{
+      gl=cv.getContext('webgl',{alpha:false,antialias:false,preserveDrawingBuffer:false})||cv.getContext('experimental-webgl');if(!gl)return;
+      var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(pr));gl.useProgram(pr);
+      var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+      ['uImg','uMask','uRes','uFocus','uPan','uT','uIA','uZoom','uAlpha','uFlow'].forEach(function(n){U[n]=gl.getUniformLocation(pr,n)});
+      gl.uniform1i(U.uImg,0);gl.uniform1i(U.uMask,1);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+      slides.forEach(function(im,k){tex[k]={img:mkTex(im),mask:mkTex(masks[k])};S[k]={ia:im.naturalWidth/im.naturalHeight,focus:nums(im,'data-focus'),pan:nums(im,'data-pan'),flow:nums(im,'data-flow')[0]}});
+      cv.addEventListener('webglcontextlost',function(e){e.preventDefault();ready=false;box.classList.remove('gl')});
+      ready=true;draw();kick();
+    }catch(err){ready=false;gl=null;if(window.console)console.warn('hero motion disabled:',err&&err.message)}
+  }
+  function pass(k,alpha){var s=S[k],pg=Math.min(1,Math.max(0,(clock-born[k])/(D+2*FADE)));
+    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,tex[k].img);gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,tex[k].mask);
+    gl.uniform2f(U.uRes,cv.width,cv.height);gl.uniform2f(U.uFocus,s.focus[0],s.focus[1]);gl.uniform2f(U.uPan,s.pan[0]*pg,s.pan[1]*pg);
+    gl.uniform1f(U.uT,clock/1000);gl.uniform1f(U.uIA,s.ia);gl.uniform1f(U.uZoom,1.03+.08*pg);gl.uniform1f(U.uAlpha,alpha);gl.uniform1f(U.uFlow,s.flow);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4)}
+  function draw(){
+    var r=box.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2),w=Math.max(2,Math.round(r.width*d)),h=Math.max(2,Math.round(r.height*d));
+    if(w>2400){h=Math.round(h*2400/w);w=2400}
+    if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h}
+    gl.viewport(0,0,w,h);
+    var f=(clock-fadeStart)/FADE;
+    if(prev>=0&&f<1){pass(prev,1);f=f*f*(3-2*f);pass(i,f)}else pass(i,1);
+    if(!shown){shown=true;box.classList.add('gl')}
+  }
+  function whenLoaded(im,cb){if(im.complete&&im.naturalWidth)cb();else{im.addEventListener('load',cb);im.addEventListener('error',function(){failed=true})}}
+  var failed=false,left=N*2,masks=[];
+  function one(){if(--left===0&&!failed&&!reduce)initGL(masks)}
+  slides.forEach(function(im,k){whenLoaded(im,one);var m=new Image();masks[k]=m;m.addEventListener('load',one);m.addEventListener('error',function(){failed=true});m.src=im.getAttribute('data-mask')});
+
+  if(reduce){paused=true;hero.classList.add('is-paused');btn.setAttribute('aria-pressed','true');btn.setAttribute('aria-label','写真の動きを再生')}else{show(0);kick()}
+})();
+</script>
+</body>
+</html>
